@@ -2302,6 +2302,7 @@ GodTab:AddSwitch("GOD MODE (PACK SPAM)", function(enabled)
     end
 end)
 
+
 local singlePetHeader = GodTab:AddLabel("SINGLE PET SPAM (EQUIP/UNEQUIP)")
 singlePetHeader.TextSize = 22
 
