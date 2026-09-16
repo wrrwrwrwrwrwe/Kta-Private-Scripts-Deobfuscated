@@ -1,0 +1,4742 @@
+local v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20
+local v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40
+local v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60
+local v61, v62, v63, v64, v65, v66, v67, v68, v69, v70, v71, v72, v73, v74, v75, v76, v77, v78, v79, v80
+local v81, v82, v83, v84, v85, v86, v87, v88, v89, v90, v91, v92, v93, v94, v95, v96, v97, v98, v99, v100
+local v101, v102, v103, v104, v105, v106, v107, v108, v109, v110, v111, v112, v113, v114, v115, v116, v117, v118, v119, v120
+local v121, v122, v123, v124, v125, v126, v127, v128, v129, v130, v131, v132, v133, v134, v135, v136, v137, v138, v139, v140
+local v141, v142, v145, v147
+
+v3 = game:GetService("Players")
+v2 = v3
+v3 = v2.LocalPlayer
+
+v8 = function()
+    if type(v3.Name) ~= "string" then
+        return false
+    end
+    if v3.UserId <= 0 then
+        return false
+    end
+    return true
+end
+
+v11 = v8()
+if not v11 then
+    v3:Kick("Spoof detected.")
+    return
+end
+
+v12 = function()
+    local v233, v234, v235
+    while true do
+        v233 = task.wait(3)
+        if v233 then
+            v234 = v8()
+            v235 = v234
+            if not v235 then
+                v3:Kick("Spoof detected (runtime).")
+                break
+            end
+            continue
+        end
+    end
+    return
+end
+task.spawn(v12)
+
+v11 = game:GetService("Players")
+v9 = v11
+v12 = game:GetService("ReplicatedStorage")
+v11 = v12
+v13 = game:GetService("RunService")
+v12 = v13
+v13 = game:GetService("SoundService")
+v7 = v13
+v13 = game:GetService("Lighting")
+v7 = v13
+v14 = v9.LocalPlayer:WaitForChild("muscleEvent")
+v9 = v14
+v14 = loadstring(game:HttpGet("https://raw.githubusercontent.com/M5-HLS-717/Nova/refs/heads/main/kilui"))
+v9 = v14()
+v16 = ("Dominator |  Killing  |  " .. v3.DisplayName)
+v17 = {}
+v18 = {}
+v20 = Color3.fromRGB(5, 5, 5)
+v18[1] = v20
+v20 = Color3.fromRGB(0, 0, 0)
+v18[2] = v20
+v21 = {}
+v21[1] = ColorSequenceKeypoint.new(0, Color3.fromRGB(10, 10, 10))
+v21[2] = ColorSequenceKeypoint.new(0.5, Color3.fromRGB(3, 3, 3))
+v21[3] = ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 0))
+v20 = ColorSequence.new(v21)
+v18.ColorSequence = v20
+v17.title_bar = v18
+v17.title_bar_transparency = 0.02
+v18 = {}
+v20 = Color3.fromRGB(35, 35, 37)
+v18[1] = v20
+v20 = Color3.fromRGB(22, 22, 24)
+v18[2] = v20
+v21 = {}
+v21[1] = ColorSequenceKeypoint.new(0, Color3.fromRGB(38, 38, 40))
+v21[2] = ColorSequenceKeypoint.new(0.5, Color3.fromRGB(28, 28, 30))
+v21[3] = ColorSequenceKeypoint.new(1, Color3.fromRGB(20, 20, 22))
+v20 = ColorSequence.new(v21)
+v18.ColorSequence = v20
+v17.background = v18
+v17.background_transparency = 0.02
+v18 = Color3.fromRGB(220, 0, 50)
+v17.main_color = v18
+v18 = Vector2.new(600, 1220)
+v17.min_size = v18
+v17.can_resize = true
+v14 = v9:AddWindow(v16, v17)
+v7 = v14
+v14 = v7:AddTab("Main")
+v9 = v14
+v15 = v9
+v15:Show()
+v14 = v9:AddLabel("Settings")
+v14.TextSize = 25
+v17 = function(v239)
+    local v240, v241, v251, v252
+    v240 = v239
+    _G.AutoSpeed = true
+    if _G.AutoSpeed then
+        if game.Players.LocalPlayer.Character then
+            v241 = game.Players.LocalPlayer.Character:FindFirstChild("Humanoid")
+        end
+        if v241 then
+            v252 = v240
+            v251 = tonumber(v252)
+            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v251
+        end
+    end
+    return
+end
+v9:AddTextBox("Speed", v17)
+v17 = function(v254)
+    local v255, v259
+    v255 = v254
+    _G.AutoSize = true
+    if _G.AutoSize then
+        v259 = game:GetService("ReplicatedStorage")
+        v259.rEvents.changeSpeedSizeRemote:InvokeServer("changeSize", tonumber(v255))
+    end
+    return
+end
+v9:AddTextBox("Size", v17)
+v14 = v9:AddLabel("Essentals")
+v14.TextSize = 25
+v17 = function(v263)
+    local v264, v265, v271, v272, v274
+    if v263 then
+        v265 = game.Workspace:FindFirstChild(game.Players.LocalPlayer.Name)
+        v264 = v265:FindFirstChild("HumanoidRootPart")
+        v271 = v264
+        v264 = Instance.new("BodyVelocity")
+        v272 = v264
+        v264 = Vector3.new(100000, 0, 100000)
+        v272.MaxForce = v264
+        v264 = Vector3.new(0, 0, 0)
+        v272.Velocity = v264
+        v272.P = 1250
+        v272.Parent = v271
+    else
+        v265 = game.Workspace:FindFirstChild(game.Players.LocalPlayer.Name)
+        v264 = v265:FindFirstChild("HumanoidRootPart")
+        v271 = v264
+        v264 = v271:FindFirstChild("BodyVelocity")
+        v272 = v264
+        v271 = v272
+        if v271 then
+            v265 = Vector3.new(100000, 0, 100000)
+            v274 = v271
+            if v272.MaxForce == v265 then
+                v274 = true
+            end
+        end
+        if v274 then
+            v272:Destroy()
+        end
+    end
+    return
+end
+v14 = v9:AddSwitch("Anti Knockback", v17)
+v6 = v14
+v15 = v6
+v15:Set(true)
+v17 = function(v275)
+    local v276, v277, v278, v279, v280, v281, v282, v285
+    v277 = game:GetService("ReplicatedStorage")
+    v276 = v277
+    for v280, v281 in pairs(v276:GetChildren()) do
+        v282 = v281.Name:match("Frame$")
+        if v282 then
+            v285 = v275
+            v281.Visible = not v285
+        end
+    end
+    return
+end
+v9:AddSwitch("Hide Frames", v17)
+v15 = game:GetService("Lighting")
+v14 = v15
+v16 = game:GetService("Players")
+v15 = v16
+v16 = {}
+v16.Brightness = v14.Brightness
+v16.ClockTime = v14.ClockTime
+v16.OutdoorAmbient = v14.OutdoorAmbient
+v16.Ambient = v14.Ambient
+v16.FogColor = v14.FogColor
+v16.FogEnd = v14.FogEnd
+v18 = function()
+    local v287, v288, v289, v290, v291, v292
+    for v290, v291 in pairs(v14:GetChildren()) do
+        v292 = v291:IsA("Sky")
+        if v292 then
+            v291:Destroy()
+        end
+    end
+    v287 = Instance.new("Sky")
+    v287.Name = "DarkSky"
+    v287.SkyboxBk = "rbxassetid://0"
+    v287.SkyboxDn = "rbxassetid://0"
+    v287.SkyboxFt = "rbxassetid://0"
+    v287.SkyboxLf = "rbxassetid://0"
+    v287.SkyboxRt = "rbxassetid://0"
+    v287.SkyboxUp = "rbxassetid://0"
+    v287.Parent = v14
+    v14.Brightness = 0
+    v14.ClockTime = 0
+    v288 = Color3.new(0, 0, 0)
+    v14.OutdoorAmbient = v288
+    v288 = Color3.new(0, 0, 0)
+    v14.Ambient = v288
+    v288 = Color3.new(0, 0, 0)
+    v14.FogColor = v288
+    v14.FogEnd = 0
+    return
+end
+v19 = function()
+    local v298, v299, v300, v301, v302
+    for v301, v302 in pairs(v16) do
+        v14[v301] = v302
+    end
+    v299 = v14:FindFirstChild("DarkSky")
+    if v299 then
+        v299:Destroy()
+    end
+    return
+end
+v17 = false
+v23 = function(v305)
+    v17 = v305
+    if v305 then
+        v18()
+    else
+        v19()
+    end
+    return
+end
+v9:AddSwitch("Anti Lag", v23)
+v23 = function(v308)
+    local v309, v310, v311, v312, v313, v316
+    for v312, v313 in ipairs(parts) do
+        v316 = v313
+        if v313 then
+            v316 = v313.Parent
+        end
+        if v316 then
+            v313.CanCollide = v308
+        end
+    end
+    return
+end
+v20 = v9:AddSwitch("Walk on Water", v23)
+v6 = v20
+v21 = v6
+v21:Set(true)
+v23 = function()
+    loadstring()
+    return
+end
+v9:AddButton("Load Infinite Yield", v23)
+v23 = function()
+    loadstring()
+    return
+end
+v9:AddButton("Load Anti Afk", v23)
+v20 = {}
+v23 = Vector3.new(-2, -9.5, -2)
+v22 = 50000
+v21 = 2048
+v24 = function()
+    local v330, v333, v334, v337, v338, v340, v342, v344, v345
+    for v330 = 0, (math.ceil((v22 / v21)) - 1) do
+        for v333 = 0, (math.ceil((v22 / v21)) - 1) do
+            v334 = function(v347, v348)
+                local v349, v350
+                v349 = Instance.new("Part")
+                v350 = Vector3.new(v21, 1, v21)
+                v349.Size = v350
+                v349.Position = v347
+                v349.Anchored = true
+                v349.Transparency = 1
+                v349.CanCollide = true
+                v349.Name = v348
+                v349.Parent = workspace
+                v350 = v349
+                return v350
+            end
+            v337 = v334
+            v340 = Vector3.new((v330 * v21), 0, (v333 * v21))
+            v345 = v330
+            v344 = (("Part_Side_" .. v345) .. "_")
+            v345 = v333
+            table.insert(v20, v337(v340, (v344 .. v345)))
+            v337 = v334
+            v342 = v330
+            v340 = Vector3.new((-v342 * v21), 0, (v333 * v21))
+            v345 = v330
+            v344 = (("Part_LeftRight_" .. v345) .. "_")
+            v345 = v333
+            table.insert(v20, v337(v340, (v344 .. v345)))
+            v337 = v334
+            v342 = v330
+            v344 = v333
+            v340 = Vector3.new((-v342 * v21), 0, (-v344 * v21))
+            v345 = v330
+            v344 = (("Part_UpLeft_" .. v345) .. "_")
+            v345 = v333
+            table.insert(v20, v337(v340, (v344 .. v345)))
+            v337 = v334
+            v344 = v333
+            v340 = Vector3.new((v330 * v21), 0, (-v344 * v21))
+            v345 = v330
+            v344 = (("Part_UpRight_" .. v345) .. "_")
+            v345 = v333
+            table.insert(v20, v337(v340, (v344 .. v345)))
+        end
+    end
+    return
+end
+task.spawn(v24)
+v27 = function(v355)
+    local v356, v357, v358, v360
+    if v355 then
+        v357 = getgenv()
+        v360 = game:GetService("RunService")
+        v356 = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+        v360 = function()
+            local v364
+            v364 = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+            if v364 then
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v356
+            end
+            return
+        end
+        v358 = v360.Heartbeat:Connect(v360)
+        v357.posLock = v358
+    else
+        v357 = getgenv()
+        if v357.posLock then
+            v360 = getgenv()
+            v360.posLock:Disconnect()
+            v356 = getgenv()
+            v356.posLock = nil
+        end
+    end
+    return
+end
+v24 = v9:AddSwitch("Lock Position", v27)
+v6 = v24
+v27 = function()
+    local v374, v375, v376, v378, v381
+    v375 = game:GetService("TeleportService")
+    v374 = v375
+    v376 = game:GetService("Players")
+    v375 = v376
+    v378 = v374
+    v381 = v375.LocalPlayer
+    v378:TeleportToPlaceInstance(game.PlaceId, game.JobId, v381)
+    return
+end
+v9:AddButton("Rejoin", v27)
+v24 = v7:AddTab("Killing")
+v9 = v24
+v24 = {}
+v13 = v3
+v42 = function(v383)
+    local v384, v385, v386, v387, v388, v389, v390, v393, v394
+    v384 = v383
+    v393 = not v384
+    if not (not v384) then
+        v393 = not v383.Character
+    end
+    if v393 then
+        return
+    end
+    v385 = v383.Character:FindFirstChild("Humanoid")
+    v384 = v385
+    v385 = v384
+    if not (not v385) then
+        v394 = not v385
+        if v384.Health <= 0 then
+            v394 = true
+        end
+    end
+    if v394 then
+        return
+    end
+    v385 = v13.Character
+    if not (v385) then
+        return
+    end
+    v386 = v13.Backpack:FindFirstChild("Punch")
+    v385 = v386
+    v386 = v385
+    if v386 then
+        v386 = v13.Character:FindFirstChild("Punch")
+    end
+    if not v386 then
+        v385.Parent = v13.Character
+    end
+    v387 = v13.Character:FindFirstChild("RightHand")
+    v386 = v387
+    v388 = v13.Character:FindFirstChild("LeftHand")
+    v387 = v388
+    v389 = v383.Character:FindFirstChild("HumanoidRootPart")
+    v388 = v389
+    v389 = v386
+    if v389 then
+        v389 = v387
+    end
+    if v389 then
+        v389 = v388
+    end
+    if not (v389) then
+        return
+    end
+    v384 = v13.Character
+    v390 = function()
+        local v395, v396, v397
+        for v397 = 1, 4 do
+            firetouchinterest(v386, v388, 1)
+            firetouchinterest(v387, v388, 1)
+            firetouchinterest(v386, v388, 0)
+            firetouchinterest(v387, v388, 0)
+        end
+        v395 = v13:FindFirstChild("muscleEvent")
+        if v395 then
+            v13.muscleEvent:FireServer("punch", "rightHand")
+            v13.muscleEvent:FireServer("punch", "leftHand")
+        end
+        v396 = v384:FindFirstChild("Punch")
+        if v396 then
+            v396 = v396:FindFirstChild("attackTime")
+            if v396 then
+                v396.attackTime.Value = 0
+            end
+            v396:Activate()
+        end
+        return
+    end
+    pcall(v390)
+    return
+end
+v43 = v9:AddLabel("Miscellaneous")
+v43.TextSize = 26
+v46 = function(v403)
+    local v404, v405, v406, v407, v408, v409, v410, v413, v414, v415, v416, v417, v421
+    for v408, v409 in pairs(v13.petsFolder:GetChildren()) do
+        v410 = v409:IsA("Folder")
+        if v410 then
+            for v416, v417 in pairs(v409:GetChildren()) do
+                v421 = v417
+                v11.rEvents.equipPetEvent:FireServer("unequipPet", v421)
+            end
+        end
+    end
+    task.wait(0.2)
+    v404 = {}
+    for v408, v409 in pairs(v13.petsFolder.Unique:GetChildren()) do
+        if v409.Name == v403 then
+            table.insert(v404, v409)
+        end
+    end
+    v409 = v404
+    v405 = math.min(#v409, 8)
+    for v407 = 1, v405 do
+        v11.rEvents.equipPetEvent:FireServer("equipPet", v404[v407])
+        task.wait(0.1)
+    end
+    return
+end
+v43 = v9:AddDropdown("Select Pet", v46)
+v6 = v43
+v6:Add("Wild Wizard")
+v6:Add("Mighty Monster")
+v43 = {}
+v43[1] = "Morning"
+v43[2] = "Noon"
+v43[3] = "Afternoon"
+v43[4] = "Sunset"
+v43[5] = "Night"
+v43[6] = "Midnight"
+v43[7] = "Dawn"
+v43[8] = "Early Morning"
+v47 = function(v423)
+    local v425
+    v14.Brightness = 2
+    v14.FogEnd = 100000
+    v425 = Color3.fromRGB(127, 127, 127)
+    v14.Ambient = v425
+    if v423 == "Morning" then
+        v14.ClockTime = 6
+        v14.Brightness = 2
+        v425 = Color3.fromRGB(200, 200, 255)
+        v14.Ambient = v425
+    else
+        if v423 == "Noon" then
+            v14.ClockTime = 12
+            v14.Brightness = 3
+            v425 = Color3.fromRGB(255, 255, 255)
+            v14.Ambient = v425
+        else
+            if v423 == "Afternoon" then
+                v14.ClockTime = 16
+                v14.Brightness = 2.5
+                v425 = Color3.fromRGB(255, 220, 180)
+                v14.Ambient = v425
+            else
+                if v423 == "Sunset" then
+                    v14.ClockTime = 18
+                    v14.Brightness = 2
+                    v425 = Color3.fromRGB(255, 150, 100)
+                    v14.Ambient = v425
+                    v14.FogEnd = 500
+                else
+                    if v423 == "Night" then
+                        v14.ClockTime = 20
+                        v14.Brightness = 1.5
+                        v425 = Color3.fromRGB(100, 100, 150)
+                        v14.Ambient = v425
+                        v14.FogEnd = 800
+                    else
+                        if v423 == "Midnight" then
+                            v14.ClockTime = 0
+                            v14.Brightness = 1
+                            v425 = Color3.fromRGB(50, 50, 100)
+                            v14.Ambient = v425
+                            v14.FogEnd = 400
+                        else
+                            if v423 == "Dawn" then
+                                v14.ClockTime = 4
+                                v14.Brightness = 1.8
+                                v425 = Color3.fromRGB(180, 180, 220)
+                                v14.Ambient = v425
+                            else
+                                if v423 == "Early Morning" then
+                                    v14.ClockTime = 2
+                                    v14.Brightness = 1.2
+                                    v425 = Color3.fromRGB(100, 120, 180)
+                                    v14.Ambient = v425
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+    return
+end
+v44 = v9:AddDropdown("Change Time", v47)
+v6 = v44
+for v47, v48 in ipairs(v43) do
+    v50 = v6
+    v51 = v48
+    v50:Add(v51)
+end
+v43 = false
+v47 = function(v430)
+    v43 = v430
+    return
+end
+v9:AddSwitch("Block Eating Egg", v47)
+v44 = false
+v48 = function(v432)
+    local v433, v434, v435, v436, v437, v438, v439, v440, v441, v442, v444, v445
+    v44 = v432
+    v433 = {}
+    v433["rbxassetid://3638729053"] = true
+    v433["rbxassetid://3638767427"] = true
+    if v432 then
+        v434 = function(v451)
+            local v452, v453, v454, v455, v456, v457, v459
+            if v451 then
+                v452 = v451:FindFirstChild("Humanoid")
+            end
+            v453 = v452
+            if not (v453) then
+                return
+            end
+            for v456, v457 in pairs(v452:GetPlayingAnimationTracks()) do
+                if v457.Animation then
+                    v459 = v457.Name:lower()
+                    v451 = v459
+                    if not (v433[v457.Animation.AnimationId]) then
+                        v459 = v451:match("punch")
+                    end
+                    if not (v459) then
+                        v459 = v451:match("attack")
+                    end
+                    if not (v459) then
+                        v459 = v451:match("right")
+                    end
+                    if v459 then
+                        v457:Stop()
+                    end
+                end
+            end
+            if not (_G.AnimBlockConn) then
+                v456 = function(v465)
+                    local v467, v468
+                    if not (v44) then
+                        return
+                    end
+                    if v465.Animation then
+                        v468 = v465.Name:lower()
+                        v467 = v468
+                        if not (v433[v465.Animation.AnimationId]) then
+                            v468 = v467:match("punch")
+                        end
+                        if not (v468) then
+                            v468 = v467:match("attack")
+                        end
+                        if not (v468) then
+                            v468 = v467:match("right")
+                        end
+                        if v468 then
+                            v465:Stop()
+                        end
+                    end
+                    return
+                end
+                v454 = v452.AnimationPlayed:Connect(v456)
+                _G.AnimBlockConn = v454
+            end
+            return
+        end
+        v435 = function(v474)
+            local v475, v476, v477, v478, v480
+            if v474 then
+                v480 = v474
+                if v474.Name == "Punch" then
+                    v480 = true
+                end
+                if not (false) then
+                    v475 = v474.Name:match("Attack")
+                end
+                if not (v475) then
+                    v475 = v474.Name:match("Right")
+                end
+            end
+            if not v475 then
+                return
+            end
+            v475 = v474:GetAttribute("AOvrr")
+            if v475 then
+                return
+            end
+            v474:SetAttribute("AOvrr", true)
+            v478 = function()
+                local v482, v484, v485, v486, v487, v488, v489, v491
+                if not v44 then
+                    return
+                end
+                task.wait(0.05)
+                if v13.Character then
+                    v482 = v13.Character:FindFirstChild("Humanoid")
+                end
+                if v482 then
+                    for v488, v489 in pairs(v13.Character.Humanoid:GetPlayingAnimationTracks()) do
+                        if v489.Animation then
+                            v491 = v489.Name:lower()
+                            v484 = v491
+                            if not (v433[v489.Animation.AnimationId]) then
+                                v491 = v484:match("punch")
+                            end
+                            if not (v491) then
+                                v491 = v484:match("attack")
+                            end
+                            if not (v491) then
+                                v491 = v484:match("right")
+                            end
+                            if v491 then
+                                v489:Stop()
+                            end
+                        end
+                    end
+                end
+                return
+            end
+            v476 = v474.Activated:Connect(v478)
+            v475 = v476
+            if not (_G.ToolConns) then
+                v477 = {}
+            end
+            _G.ToolConns = v477
+            _G.ToolConns[v474] = v475
+            return
+        end
+        v437 = v434
+        v437(v13.Character)
+        for v440, v441 in pairs(v13.Backpack:GetChildren()) do
+            v444 = v435
+            v444(v441)
+        end
+        if v13.Character then
+            for v440, v441 in pairs(v13.Character:GetChildren()) do
+                v442 = v441:IsA("Tool")
+                if v442 then
+                    v445 = v435
+                    v445(v441)
+                end
+            end
+        end
+        if not (_G.BpAddConn) then
+            v440 = function(v497)
+                local v498
+                v498 = v497:IsA("Tool")
+                if v498 then
+                    task.wait(0.1)
+                    v435(v497)
+                end
+                return
+            end
+            v438 = v13.Backpack.ChildAdded:Connect(v440)
+            _G.BpAddConn = v438
+        end
+        if not (_G.AnimMonitor) then
+            v440 = function()
+                local v505, v507, v508, v509, v510, v511, v512, v514
+                if not v44 then
+                    return
+                end
+                v505 = tick()
+                if (v505 % 0.5) < 0.01 then
+                    if v13.Character then
+                        v505 = v13.Character:FindFirstChild("Humanoid")
+                    end
+                    if v505 then
+                        for v511, v512 in pairs(v13.Character.Humanoid:GetPlayingAnimationTracks()) do
+                            if v512.Animation then
+                                v514 = v512.Name:lower()
+                                v507 = v514
+                                if not (v433[v512.Animation.AnimationId]) then
+                                    v514 = v507:match("punch")
+                                end
+                                if not (v514) then
+                                    v514 = v507:match("attack")
+                                end
+                                if not (v514) then
+                                    v514 = v507:match("right")
+                                end
+                                if v514 then
+                                    v512:Stop()
+                                end
+                            end
+                        end
+                    end
+                end
+                return
+            end
+            v438 = v12.Heartbeat:Connect(v440)
+            _G.AnimMonitor = v438
+        end
+        if not (_G.CharAddConn) then
+            v440 = function(v520)
+                task.wait(1)
+                v434(v520)
+                return
+            end
+            v438 = v13.CharacterAdded:Connect(v440)
+            _G.CharAddConn = v438
+        end
+    else
+        if _G.AnimBlockConn then
+            _G.AnimBlockConn:Disconnect()
+            _G.AnimBlockConn = nil
+        end
+        if _G.AnimMonitor then
+            _G.AnimMonitor:Disconnect()
+            _G.AnimMonitor = nil
+        end
+        if _G.BpAddConn then
+            _G.BpAddConn:Disconnect()
+            _G.BpAddConn = nil
+        end
+        if _G.CharAddConn then
+            _G.CharAddConn:Disconnect()
+            _G.CharAddConn = nil
+        end
+        if _G.ToolConns then
+            for v437, v438 in pairs(_G.ToolConns) do
+                if v438 then
+                    v438:Disconnect()
+                end
+            end
+            _G.ToolConns = nil
+        end
+        if v13.Character then
+            for v438, v439 in pairs(v13.Character:GetChildren()) do
+                v440 = v439:IsA("Tool")
+                if v440 then
+                    v439:SetAttribute("AOvrr", nil)
+                end
+            end
+        end
+        for v438, v439 in pairs(v13.Backpack:GetChildren()) do
+            v442 = v439:IsA("Tool")
+            if v442 then
+                v439:SetAttribute("AOvrr", nil)
+            end
+        end
+    end
+    return
+end
+v9:AddSwitch("Remove Punch Animation", v48)
+v48 = function()
+    local v525, v529
+    if v43 then
+        return
+    end
+    v525 = v13.Character
+    if not v525 then
+        return
+    end
+    v525 = v13.Backpack:FindFirstChild("Protein Egg")
+    if not (v525) then
+        v525 = v13.Character:FindFirstChild("Protein Egg")
+    end
+    if v525 then
+        v529 = v525
+        if v525.Parent ~= v13.Character then
+            v529 = true
+        end
+    end
+    if v529 then
+        v525.Parent = v13.Character
+    end
+    return
+end
+v45 = false
+v47 = "Remove Punch Animation"
+v52 = function(v530)
+    local v531, v532, v533
+    v45 = v530
+    if v530 then
+        v11.rEvents.changeSpeedSizeRemote:InvokeServer("changeSize", (0 / 0))
+        v532 = function()
+            while true do
+                if v45 then
+                    if not (v43) then
+                        v48()
+                    end
+                    task.wait(0.2)
+                end
+            end
+            return
+        end
+        v9 = task.spawn(v532)
+        v533 = function()
+            task.wait(0.1)
+            if not v43 then
+                v48()
+            end
+            return
+        end
+        v531 = v13.CharacterAdded:Connect(v533)
+        v47 = v531
+        v48()
+    else
+        if v9 then
+            task.cancel(v9)
+            v9 = nil
+        end
+        if v47 then
+            v47:Disconnect()
+            v47 = nil
+        end
+    end
+    return
+end
+v9:AddSwitch("Egg + NaN Combo", v52)
+v52 = function(v543)
+    local v544, v545
+    _G.autoPunchActive = v543
+    if v543 then
+        v545 = function()
+            local v550
+            while true do
+                if _G.autoPunchActive then
+                    v550 = v13.Backpack:FindFirstChild("Punch")
+                    if v550 then
+                        v550.Parent = v13.Character
+                        v550 = v550:FindFirstChild("attackTime")
+                        if v550 then
+                            v550.attackTime.Value = 0
+                        end
+                    end
+                    task.wait(0.03)
+                end
+            end
+            return
+        end
+        task.spawn(v545)
+        v545 = function()
+            local v556
+            while true do
+                if _G.autoPunchActive then
+                    if v13.Character then
+                        v556 = v13.Character:FindFirstChild("Punch")
+                    end
+                    if v556 then
+                        v556:Activate()
+                    end
+                    task.wait()
+                end
+            end
+            return
+        end
+        task.spawn(v545)
+    else
+        if v13.Character then
+            v544 = v13.Character:FindFirstChild("Punch")
+        end
+        if v544 then
+            v544.Parent = v13.Backpack
+        end
+    end
+    return
+end
+v9:AddSwitch("Fast Punch", v52)
+v49 = false
+v53 = function(v561)
+    local v562, v563
+    v49 = v561
+    if v561 then
+        v563 = function()
+            local v568, v569, v570
+            while true do
+                if v49 then
+                    if v13.Character then
+                        v569 = v13.Backpack:FindFirstChild("Punch")
+                        v568 = v569
+                        v569 = v568
+                        if v569 then
+                            v569 = v13.Character:FindFirstChild("Punch")
+                        end
+                        if not v569 then
+                            v568.Parent = v13.Character
+                        end
+                        v570 = v13.Character:FindFirstChild("Punch")
+                        if v570 then
+                            v570:Activate()
+                        end
+                    end
+                    task.wait(0.1)
+                end
+            end
+            return
+        end
+        task.spawn(v563)
+    else
+        if v13.Character then
+            v562 = v13.Character:FindFirstChild("Punch")
+        end
+        if v562 then
+            v562.Parent = v13.Backpack
+        end
+    end
+    return
+end
+v9:AddSwitch("Auto Punch (Yes Animation)", v53)
+v50 = false
+v54 = function(v574)
+    local v575, v576
+    v50 = v574
+    if v574 then
+        v576 = function()
+            local v581, v582, v583, v584, v585, v586, v587, v588, v590, v591
+            while true do
+                if v50 then
+                    if v13.Character then
+                        v582 = v13.Backpack:FindFirstChild("Punch")
+                        v581 = v582
+                        v582 = v581
+                        if v582 then
+                            v582 = v13.Character:FindFirstChild("Punch")
+                        end
+                        if not v582 then
+                            v581.Parent = v13.Character
+                        end
+                        v582 = v13:FindFirstChild("muscleEvent")
+                        if v582 then
+                            v13.muscleEvent:FireServer("punch", "rightHand")
+                            v13.muscleEvent:FireServer("punch", "leftHand")
+                        end
+                        v583 = v13.Character:FindFirstChild("Humanoid")
+                        if v583 then
+                            v583 = {}
+                            v583["rbxassetid://3638729053"] = true
+                            v583["rbxassetid://3638767427"] = true
+                            for v587, v588 in pairs(v583:GetPlayingAnimationTracks()) do
+                                if v588.Animation then
+                                    v591 = v588.Name:lower()
+                                    v590 = v591
+                                    if not (v583[v588.Animation.AnimationId]) then
+                                        v591 = v590:match("punch")
+                                    end
+                                    if not (v591) then
+                                        v591 = v590:match("attack")
+                                    end
+                                    if not (v591) then
+                                        v591 = v590:match("right")
+                                    end
+                                    if v591 then
+                                        v588:Stop()
+                                    end
+                                end
+                            end
+                        end
+                    end
+                    task.wait(0.1)
+                end
+            end
+            return
+        end
+        task.spawn(v576)
+    else
+        if v13.Character then
+            v575 = v13.Character:FindFirstChild("Punch")
+        end
+        if v575 then
+            v575.Parent = v13.Backpack
+        end
+    end
+    return
+end
+v9:AddSwitch("Auto Punch (No Animation)", v54)
+v9:AddLabel("————————————————————————————————————————————————————————")
+v51 = v9:AddLabel("Auto Kill")
+v51.TextSize = 26
+v52 = v9:AddLabel("Whitelisted: none")
+v51 = v52
+v51.TextSize = 13
+v53 = function()
+    local v597, v598, v599, v600, v601
+    v597 = {}
+    for v601 in pairs(v24) do
+        table.insert(v597, v601)
+    end
+    v598 = v597
+    if #v598 == 0 then
+        v51.Text = "Whitelisted: none"
+    else
+        v601 = v597
+        v51.Text = ((("Whitelisted (" .. #v601) .. "):  ") .. table.concat(v597, "   |   "))
+    end
+    return
+end
+v52 = nil
+v58 = function(v606)
+    local v607, v608, v609, v610, v611
+    for v610, v611 in ipairs(v15:GetPlayers()) do
+        if v611.DisplayName == v606 then
+            if not (v24[v611.Name]) then
+                v24[v611.Name] = true
+                v53()
+                if v52 then
+                    v52:Add(v611.DisplayName)
+                    break
+                end
+                break
+            end
+            break
+        end
+    end
+    return
+end
+v55 = v9:AddDropdown("Add to Whitelist", v58)
+v54 = v55
+for v58, v59 in ipairs(v15:GetPlayers()) do
+    if v59 ~= v13 then
+        v61 = v54
+        v61:Add(v59.DisplayName)
+    end
+end
+v57 = function(v619)
+    if v619 ~= v13 then
+        v54:Add(v619.DisplayName)
+    end
+    return
+end
+v15.PlayerAdded:Connect(v57)
+v57 = function(v624)
+    if v24[v624.Name] then
+        v24[v624.Name] = nil
+        v53()
+    end
+    return
+end
+v15.PlayerRemoving:Connect(v57)
+v58 = function(v633)
+    local v634, v635, v636, v637, v638, v639, v640, v641, v642, v644
+    for v637, v638 in ipairs(v15:GetPlayers()) do
+        if v638.DisplayName == v633 then
+            if v24[v638.Name] then
+                v24[v638.Name] = nil
+                v53()
+                v52:Clear()
+                for v642 in pairs(v24) do
+                    v644 = v15:FindFirstChild(v642)
+                    if v644 then
+                        v52:Add(v644.DisplayName)
+                    end
+                end
+                break
+            end
+            break
+        end
+    end
+    return
+end
+v55 = v9:AddDropdown("Remove from Whitelist", v58)
+v52 = v55
+v58 = function()
+    local v648
+    v648 = {}
+    v24 = v648
+    v53()
+    v52:Clear()
+    return
+end
+v9:AddButton("Reset Whitelist", v58)
+v27 = false
+v58 = function(v651)
+    local v652
+    v27 = v651
+    v652 = function()
+        local v654, v655, v656, v657, v658, v665, v666, v667, v668
+        while true do
+            if v27 then
+                for v657, v658 in ipairs(v15:GetPlayers()) do
+                    v665 = v15
+                    if v658 ~= v13 then
+                        v665 = true
+                    end
+                    v666 = false
+                    v667 = v13
+                    v668 = nil
+                    if v665 then
+                        v666 = not v24[v658.Name]
+                        v667 = v24
+                        v668 = v658.Name
+                    end
+                    if v666 then
+                        v42(v658)
+                    end
+                end
+                task.wait(0.05)
+            end
+        end
+        return
+    end
+    task.spawn(v652)
+    return
+end
+v9:AddSwitch("Auto Kill All", v58)
+v33 = false
+v58 = function(v669)
+    local v670, v671, v672, v673, v674, v675, v685
+    v33 = v669
+    if v669 then
+        for v673, v674 in ipairs(v15:GetPlayers()) do
+            v685 = v15
+            if v674 ~= v13 then
+                v685 = true
+            end
+            if v685 then
+                v675 = v13:IsFriendsWith(v674.UserId)
+            end
+            if v675 then
+                if not (v24[v674.Name]) then
+                    v24[v674.Name] = true
+                    if v52 then
+                        v52:Add(v674.DisplayName)
+                    end
+                end
+            end
+        end
+    else
+        for v673 in pairs(v24) do
+            v675 = v15:FindFirstChild(v673)
+            v674 = v675
+            v675 = v674
+            if v675 then
+                v675 = v13:IsFriendsWith(v674.UserId)
+            end
+            if v675 then
+                v24[v673] = nil
+            end
+        end
+    end
+    v53()
+    return
+end
+v9:AddSwitch("Auto Whitelist Friends", v58)
+v26 = false
+v58 = function(v686)
+    local v687
+    v26 = v686
+    v687 = function()
+        local v689, v690, v691, v692, v693, v694, v695, v696, v702
+        while true do
+            if v26 then
+                for v692, v693 in ipairs(v15:GetPlayers()) do
+                    if v693 ~= v13 then
+                        v695 = v693:FindFirstChild("evilKarma")
+                        v694 = v695
+                        v696 = v693:FindFirstChild("goodKarma")
+                        v695 = v696
+                        v696 = v694
+                        if v696 then
+                            v696 = v695
+                        end
+                        if v696 then
+                            v696 = v694:IsA("IntValue")
+                        end
+                        if v696 then
+                            v696 = v695:IsA("IntValue")
+                        end
+                        if v696 then
+                            v702 = v696
+                            if v694.Value < v695.Value then
+                                v702 = true
+                            end
+                        end
+                        if v702 then
+                            v42(v693)
+                        end
+                    end
+                end
+                task.wait(0.05)
+            end
+        end
+        return
+    end
+    task.spawn(v687)
+    return
+end
+v9:AddSwitch("Auto Kill Bad Karma", v58)
+v25 = false
+v58 = function(v703)
+    local v704
+    v25 = v703
+    v704 = function()
+        local v706, v707, v708, v709, v710, v711, v712, v713, v719
+        while true do
+            if v25 then
+                for v709, v710 in ipairs(v15:GetPlayers()) do
+                    if v710 ~= v13 then
+                        v712 = v710:FindFirstChild("evilKarma")
+                        v711 = v712
+                        v713 = v710:FindFirstChild("goodKarma")
+                        v712 = v713
+                        v713 = v711
+                        if v713 then
+                            v713 = v712
+                        end
+                        if v713 then
+                            v713 = v711:IsA("IntValue")
+                        end
+                        if v713 then
+                            v713 = v712:IsA("IntValue")
+                        end
+                        if v713 then
+                            v719 = v713
+                            if v712.Value < v711.Value then
+                                v719 = true
+                            end
+                        end
+                        if v719 then
+                            v42(v710)
+                        end
+                    end
+                end
+                task.wait(0.05)
+            end
+        end
+        return
+    end
+    task.spawn(v704)
+    return
+end
+v9:AddSwitch("Auto Kill Good Karma", v58)
+v55 = v53
+v55()
+v9:AddLabel("————————————————————————————————————————————————————————")
+v55 = {}
+v56 = {}
+v58 = v9:AddLabel("  Target System")
+v58.TextSize = 20
+v62 = function(v720)
+    local v721, v722, v723, v724, v725
+    for v724, v725 in ipairs(v15:GetPlayers()) do
+        if v725.DisplayName == v720 then
+            if not (v55[v725.Name]) then
+                v55[v725.Name] = v725.DisplayName
+                if not (table.find(v56, v725.Name)) then
+                    table.insert(v56, v725.Name)
+                    break
+                end
+                break
+            end
+            break
+        end
+    end
+    return
+end
+v59 = v9:AddDropdown("Add Target", v62)
+v58 = v59
+for v62, v63 in ipairs(v15:GetPlayers()) do
+    if v63 ~= v13 then
+        v65 = v58
+        v65:Add(v63.DisplayName)
+    end
+end
+v61 = function(v733)
+    if v733 ~= v13 then
+        v58:Add(v733.DisplayName)
+    end
+    return
+end
+v15.PlayerAdded:Connect(v61)
+v61 = function(v738)
+    local v741
+    if v55[v738.Name] then
+        v55[v738.Name] = nil
+        for v741 = #v56, 1, -1 do
+            if v56[v741] == v738.Name then
+                table.remove(v56, v741)
+            end
+            if (-1 > 0 and (v741 + -1) <= 1) or (-1 <= 0 and (v741 + -1) >= 1) then continue end
+        end
+    end
+    return
+end
+v15.PlayerRemoving:Connect(v61)
+v62 = function()
+    local v748
+    v748 = {}
+    v55 = v748
+    v748 = {}
+    v56 = v748
+    return
+end
+v9:AddButton("Clear All Targets", v62)
+v37 = false
+v57 = false
+v60 = function()
+    local v751
+    if v37 then
+        return
+    end
+    v37 = true
+    v751 = function()
+        local v754, v755, v756, v757, v758, v759, v760, v761, v762, v763, v764, v765, v766, v769, v770, v771
+        while true do
+            if v57 then
+                if v13.Character then
+                    v755 = v13.Backpack:FindFirstChild("Punch")
+                    v754 = v755
+                    v755 = v754
+                    if v755 then
+                        v755 = v13.Character:FindFirstChild("Punch")
+                    end
+                    if not v755 then
+                        v754.Parent = v13.Character
+                    end
+                    v756 = v13.Character:FindFirstChild("RightHand")
+                    v755 = v756
+                    v757 = v13.Character:FindFirstChild("LeftHand")
+                    v756 = v757
+                    v758 = v13.Character:FindFirstChild("Punch")
+                    v757 = v758
+                    v758 = v755
+                    if v758 then
+                        v758 = v756
+                    end
+                    if v758 then
+                        for v761 in pairs(v55) do
+                            v763 = v15:FindFirstChild(v761)
+                            v762 = v763
+                            v763 = v762
+                            if v763 then
+                                v769 = v763
+                                if v762 ~= v13 then
+                                    v769 = true
+                                end
+                            end
+                            v770 = false
+                            if v769 then
+                                v770 = v762.Character
+                            end
+                            if v770 then
+                                v764 = v762.Character:FindFirstChild("HumanoidRootPart")
+                                v763 = v764
+                                v765 = v762.Character:FindFirstChild("Humanoid")
+                                v764 = v765
+                                v765 = v763
+                                if v765 then
+                                    v765 = v764
+                                end
+                                if v765 then
+                                    v771 = v765
+                                    if 0 < v764.Health then
+                                        v771 = true
+                                    end
+                                end
+                                if v771 then
+                                    v766 = function()
+                                        local v772, v774
+                                        for v774 = 1, 4 do
+                                            firetouchinterest(v755, v763, 1)
+                                            firetouchinterest(v756, v763, 1)
+                                            firetouchinterest(v755, v763, 0)
+                                            firetouchinterest(v756, v763, 0)
+                                        end
+                                        v772 = v13:FindFirstChild("muscleEvent")
+                                        if v772 then
+                                            v13.muscleEvent:FireServer("punch", "rightHand")
+                                            v13.muscleEvent:FireServer("punch", "leftHand")
+                                        end
+                                        if v757 then
+                                            v772 = v757:FindFirstChild("attackTime")
+                                            if v772 then
+                                                v757.attackTime.Value = 0
+                                            end
+                                            v757:Activate()
+                                        end
+                                        return
+                                    end
+                                    pcall(v766)
+                                end
+                            end
+                        end
+                    end
+                end
+                task.wait(0.03)
+            end
+        end
+        v37 = false
+        return
+    end
+    task.spawn(v751)
+    return
+end
+v59 = nil
+v64 = function(v780)
+    local v782
+    v57 = v780
+    if v57 then
+        v60()
+        if not v59 then
+            v782 = function()
+                task.wait(0.1)
+                if v57 then
+                    v60()
+                end
+                return
+            end
+            v780 = v13.CharacterAdded:Connect(v782)
+            v59 = v780
+        end
+    else
+        if v59 then
+            v59:Disconnect()
+            v59 = nil
+        end
+    end
+    return
+end
+v9:AddSwitch("Auto Kill Target", v64)
+v9:AddLabel("————————————————————————————————————————————————————————")
+v61 = v9:AddLabel("  Spy System")
+v61.TextSize = 20
+v61 = {}
+v62 = nil
+v67 = function(v787)
+    local v788, v789, v790, v791, v792
+    for v791, v792 in ipairs(v15:GetPlayers()) do
+        if v792.DisplayName == v787 then
+            v62 = v792.Name
+            break
+        end
+    end
+    return
+end
+v64 = v9:AddDropdown("Select View Target", v67)
+v63 = v64
+for v67, v68 in ipairs(v15:GetPlayers()) do
+    if v68 ~= v13 then
+        v70 = v63
+        v70:Add(v68.DisplayName)
+        v61[v68.Name] = true
+    end
+end
+v66 = function(v795)
+    if v795 ~= v13 then
+        v63:Add(v795.DisplayName)
+        v61[v795.Name] = true
+    end
+    return
+end
+v15.PlayerAdded:Connect(v66)
+v28 = false
+v67 = function(v800)
+    local v801, v806
+    v28 = v800
+    if not (v28) then
+        if v13.Character then
+            v801 = v13.Character:FindFirstChild("Humanoid")
+        end
+        v806 = v801
+        if not (v801) then
+            v806 = v13
+        end
+        workspace.CurrentCamera.CameraSubject = v806
+        return
+    end
+    v801 = function()
+        local v807, v808, v812
+        while true do
+            if v28 then
+                v808 = v15:FindFirstChild(v62)
+                v807 = v808
+                v808 = v807
+                if v808 then
+                    v812 = v808
+                    if v807 ~= v13 then
+                        v812 = true
+                    end
+                end
+                if v812 then
+                    if v807.Character then
+                        v808 = v807.Character:FindFirstChild("Humanoid")
+                    end
+                    if v808 then
+                        workspace.CurrentCamera.CameraSubject = v808
+                    end
+                end
+                task.wait(0.1)
+            end
+        end
+        return
+    end
+    task.spawn(v801)
+    return
+end
+v9:AddSwitch("View Player", v67)
+v9:AddLabel("————————————————————————————————————————————————————————")
+v64 = v9:AddLabel("  Auto Punch System")
+v64.TextSize = 20
+v67 = function()
+    local v813, v814, v815, v817, v818, v819, v820, v821, v822, v824, v825
+    v813 = {}
+    v813["rbxassetid://3638729053"] = true
+    v813["rbxassetid://3638767427"] = true
+    v814 = function(v828)
+        local v829, v830, v831, v832, v833, v834, v836
+        if v828 then
+            v829 = v828:FindFirstChild("Humanoid")
+        end
+        v830 = v829
+        if not (v830) then
+            return
+        end
+        for v833, v834 in pairs(v829:GetPlayingAnimationTracks()) do
+            if v834.Animation then
+                v836 = v834.Name:lower()
+                v828 = v836
+                if not (v813[v834.Animation.AnimationId]) then
+                    v836 = v828:match("punch")
+                end
+                if not (v836) then
+                    v836 = v828:match("attack")
+                end
+                if not (v836) then
+                    v836 = v828:match("right")
+                end
+                if v836 then
+                    v834:Stop()
+                end
+            end
+        end
+        if not (_G.AnimBlockConn) then
+            v833 = function(v842)
+                local v844, v845
+                if v842.Animation then
+                    v845 = v842.Name:lower()
+                    v844 = v845
+                    if not (v813[v842.Animation.AnimationId]) then
+                        v845 = v844:match("punch")
+                    end
+                    if not (v845) then
+                        v845 = v844:match("attack")
+                    end
+                    if not (v845) then
+                        v845 = v844:match("right")
+                    end
+                    if v845 then
+                        v842:Stop()
+                    end
+                end
+                return
+            end
+            v831 = v829.AnimationPlayed:Connect(v833)
+            _G.AnimBlockConn = v831
+        end
+        return
+    end
+    v815 = function(v851)
+        local v852, v853, v854, v855, v857
+        if v851 then
+            v857 = v851
+            if v851.Name == "Punch" then
+                v857 = true
+            end
+            if not (false) then
+                v852 = v851.Name:match("Attack")
+            end
+            if not (v852) then
+                v852 = v851.Name:match("Right")
+            end
+        end
+        if not v852 then
+            return
+        end
+        v852 = v851:GetAttribute("AOvrr")
+        if v852 then
+            return
+        end
+        v851:SetAttribute("AOvrr", true)
+        v855 = function()
+            local v859, v861, v862, v863, v864, v865, v866, v868
+            task.wait(0.05)
+            if v13.Character then
+                v859 = v13.Character:FindFirstChild("Humanoid")
+            end
+            if v859 then
+                for v865, v866 in pairs(v13.Character.Humanoid:GetPlayingAnimationTracks()) do
+                    if v866.Animation then
+                        v868 = v866.Name:lower()
+                        v861 = v868
+                        if not (v813[v866.Animation.AnimationId]) then
+                            v868 = v861:match("punch")
+                        end
+                        if not (v868) then
+                            v868 = v861:match("attack")
+                        end
+                        if not (v868) then
+                            v868 = v861:match("right")
+                        end
+                        if v868 then
+                            v866:Stop()
+                        end
+                    end
+                end
+            end
+            return
+        end
+        v853 = v851.Activated:Connect(v855)
+        v852 = v853
+        if not (_G.ToolConns) then
+            v854 = {}
+        end
+        _G.ToolConns = v854
+        _G.ToolConns[v851] = v852
+        return
+    end
+    v817 = v814
+    v817(v13.Character)
+    for v820, v821 in pairs(v13.Backpack:GetChildren()) do
+        v824 = v815
+        v824(v821)
+    end
+    if v13.Character then
+        for v820, v821 in pairs(v13.Character:GetChildren()) do
+            v822 = v821:IsA("Tool")
+            if v822 then
+                v825 = v815
+                v825(v821)
+            end
+        end
+    end
+    if not (_G.BpAddConn) then
+        v820 = function(v874)
+            local v875
+            v875 = v874:IsA("Tool")
+            if v875 then
+                task.wait(0.1)
+                v815(v874)
+            end
+            return
+        end
+        v818 = v13.Backpack.ChildAdded:Connect(v820)
+        _G.BpAddConn = v818
+    end
+    if not _G.ChAddConn then
+        v817 = v13.Character
+    end
+    if v817 then
+        v820 = function(v881)
+            local v882
+            v882 = v881:IsA("Tool")
+            if v882 then
+                task.wait(0.1)
+                v815(v881)
+            end
+            return
+        end
+        v818 = v13.Character.ChildAdded:Connect(v820)
+        _G.ChAddConn = v818
+    end
+    if not (_G.AnimMonitor) then
+        v820 = function()
+            local v889, v891, v892, v893, v894, v895, v896, v898
+            v889 = tick()
+            if (v889 % 0.5) < 0.01 then
+                if v13.Character then
+                    v889 = v13.Character:FindFirstChild("Humanoid")
+                end
+                if v889 then
+                    for v895, v896 in pairs(v13.Character.Humanoid:GetPlayingAnimationTracks()) do
+                        if v896.Animation then
+                            v898 = v896.Name:lower()
+                            v891 = v898
+                            if not (v813[v896.Animation.AnimationId]) then
+                                v898 = v891:match("punch")
+                            end
+                            if not (v898) then
+                                v898 = v891:match("attack")
+                            end
+                            if not (v898) then
+                                v898 = v891:match("right")
+                            end
+                            if v898 then
+                                v896:Stop()
+                            end
+                        end
+                    end
+                end
+            end
+            return
+        end
+        v818 = v12.Heartbeat:Connect(v820)
+        _G.AnimMonitor = v818
+    end
+    if not (_G.CharAddConn) then
+        v820 = function(v904)
+            local v906, v908
+            task.wait(1)
+            v814(v904)
+            if _G.ChAddConn then
+                _G.ChAddConn:Disconnect()
+            end
+            v908 = function(v910)
+                local v911
+                v911 = v910:IsA("Tool")
+                if v911 then
+                    task.wait(0.1)
+                    v815(v910)
+                end
+                return
+            end
+            v906 = v904.ChildAdded:Connect(v908)
+            _G.ChAddConn = v906
+            return
+        end
+        v818 = v13.CharacterAdded:Connect(v820)
+        _G.CharAddConn = v818
+    end
+    return
+end
+v9:AddButton("Remove Punch Anim", v67)
+v67 = function()
+    local v917, v918, v919, v920, v921
+    if _G.AnimBlockConn then
+        _G.AnimBlockConn:Disconnect()
+        _G.AnimBlockConn = nil
+    end
+    if _G.AnimMonitor then
+        _G.AnimMonitor:Disconnect()
+        _G.AnimMonitor = nil
+    end
+    if _G.BpAddConn then
+        _G.BpAddConn:Disconnect()
+        _G.BpAddConn = nil
+    end
+    if _G.ChAddConn then
+        _G.ChAddConn:Disconnect()
+        _G.ChAddConn = nil
+    end
+    if _G.CharAddConn then
+        _G.CharAddConn:Disconnect()
+        _G.CharAddConn = nil
+    end
+    if _G.ToolConns then
+        for v920, v921 in pairs(_G.ToolConns) do
+            if v921 then
+                v921:Disconnect()
+            end
+        end
+        _G.ToolConns = nil
+    end
+    return
+end
+v9:AddButton("Recover Punch Anim", v67)
+v29 = false
+v67 = function(v925)
+    local v926
+    v29 = v925
+    v926 = function()
+        local v929
+        while true do
+            if v29 then
+                v929 = v13.Backpack:FindFirstChild("Punch")
+                if v929 then
+                    v929.Parent = v13.Character
+                end
+                task.wait(0.1)
+            end
+        end
+        return
+    end
+    task.spawn(v926)
+    return
+end
+v9:AddSwitch("Auto Equip Punch", v67)
+v30 = false
+v67 = function(v933)
+    local v934
+    v30 = v933
+    v934 = function()
+        local v936
+        while true do
+            if v30 then
+                v936 = v13.Backpack:FindFirstChild("Punch")
+                if not (v936) and v13.Character then
+                    v936 = v13.Character:FindFirstChild("Punch")
+                end
+                if v936 then
+                    if v936.Parent ~= v13.Character then
+                        v936.Parent = v13.Character
+                    end
+                    v13.muscleEvent:FireServer("punch", "rightHand")
+                    v13.muscleEvent:FireServer("punch", "leftHand")
+                else
+                    v30 = false
+                end
+                task.wait(0.01)
+            end
+        end
+        return
+    end
+    task.spawn(v934)
+    return
+end
+v9:AddSwitch("Auto Punch [no animation]", v67)
+v67 = function(v943)
+    local v944, v945
+    _G.fastHitActive = v943
+    if v943 then
+        v945 = function()
+            local v950
+            while true do
+                if _G.fastHitActive then
+                    v950 = v13.Backpack:FindFirstChild("Punch")
+                    if v950 then
+                        v950.Parent = v13.Character
+                        v950 = v950:FindFirstChild("attackTime")
+                        if v950 then
+                            v950.attackTime.Value = 0
+                        end
+                    end
+                    task.wait(0.05)
+                end
+            end
+            return
+        end
+        task.spawn(v945)
+        v945 = function()
+            local v956
+            while true do
+                if _G.fastHitActive then
+                    if v13.Character then
+                        v956 = v13.Character:FindFirstChild("Punch")
+                    end
+                    if v956 then
+                        v956:Activate()
+                    end
+                    task.wait(0.1)
+                end
+            end
+            return
+        end
+        task.spawn(v945)
+    else
+        if v13.Character then
+            v944 = v13.Character:FindFirstChild("Punch")
+        end
+        if v944 then
+            v944.Parent = v13.Backpack
+        end
+    end
+    return
+end
+v9:AddSwitch("Auto Punch", v67)
+v64 = false
+v68 = function(v961)
+    local v963
+    v64 = v961
+    if v961 then
+        v963 = function()
+            while true do
+                if v64 then
+                    v11.rEvents.brawlEvent:FireServer("joinBrawl")
+                    task.wait()
+                end
+            end
+            return
+        end
+        task.spawn(v963)
+    end
+    return
+end
+v9:AddSwitch("Auto Brawl Join", v68)
+v9:AddLabel("————————————————————————————————————————————————————————")
+v65 = v9:AddLabel("  Follow System")
+v65.TextSize = 20
+v65 = function(v970)
+    local v971, v972, v973
+    if v13.Character then
+        v973 = v970.Character
+    end
+    if not v973 then
+        return
+    end
+    v973 = v13.Character:FindFirstChild("HumanoidRootPart")
+    v970 = v973
+    v973 = v970.Character:FindFirstChild("HumanoidRootPart")
+    v971 = v973
+    v972 = v970
+    if v972 then
+        v972 = v971
+    end
+    if v972 then
+        v972 = CFrame.new((v971.Position - (v971.CFrame.LookVector * 3)), v971.Position)
+        v970.CFrame = v972
+    end
+    return
+end
+v32 = nil
+v31 = false
+v70 = function(v979)
+    local v980, v981, v982, v983, v984, v988
+    v980 = v979
+    if not (not v980) then
+        v988 = not v980
+        if v979 == "" then
+            v988 = true
+        end
+    end
+    if v988 then
+        return
+    end
+    for v983, v984 in ipairs(v15:GetPlayers()) do
+        if v984.DisplayName == v979 then
+            v32 = v984.Name
+            v31 = true
+            v65(v984)
+            break
+        end
+    end
+    return
+end
+v67 = v9:AddDropdown("Teleport to Player", v70)
+v66 = v67
+for v70, v71 in ipairs(v15:GetPlayers()) do
+    if v71 ~= v13 then
+        v73 = v66
+        v73:Add(v71.DisplayName)
+    end
+end
+v69 = function(v989)
+    if v989 ~= v13 then
+        v66:Add(v989.DisplayName)
+    end
+    return
+end
+v15.PlayerAdded:Connect(v69)
+v69 = function(v994)
+    if v32 == v994.Name then
+        v32 = nil
+        v31 = false
+    end
+    return
+end
+v15.PlayerRemoving:Connect(v69)
+v70 = function()
+    v31 = false
+    v32 = nil
+    return
+end
+v9:AddButton("Stop Following", v70)
+v68 = function()
+    local v1003, v1007
+    while true do
+        if task.wait(0.01) then
+            v1007 = v31
+            if v31 then
+                v1007 = v32
+            end
+            if v1007 then
+                v1003 = v15:FindFirstChild(v32)
+                if v1003 then
+                    v65(v1003)
+                    continue
+                end
+                v31 = false
+                v32 = nil
+                continue
+            end
+            continue
+        end
+    end
+    return
+end
+task.spawn(v68)
+v69 = function()
+    local v1009, v1013
+    task.wait(1)
+    v1013 = v31
+    if v31 then
+        v1013 = v32
+    end
+    if v1013 then
+        v1009 = v15:FindFirstChild(v32)
+        if v1009 then
+            v65(v1009)
+        end
+    end
+    return
+end
+v13.CharacterAdded:Connect(v69)
+v34 = false
+v35 = false
+v36 = false
+v38 = false
+v39 = false
+v40 = false
+v41 = false
+v69 = function()
+    local v1015, v1017, v1033, v1048, v1063, v1091, v1097, v1107, v1120
+    task.wait(1)
+    v1017 = v27
+    if v27 then
+        v1017 = not v34
+    end
+    if v1017 then
+        v34 = true
+        v1015 = function()
+            local v1018, v1019, v1020, v1021, v1022, v1029, v1030, v1031, v1032
+            while true do
+                if v27 then
+                    for v1021, v1022 in ipairs(v15:GetPlayers()) do
+                        v1029 = v15
+                        if v1022 ~= v13 then
+                            v1029 = true
+                        end
+                        v1030 = false
+                        v1031 = v13
+                        v1032 = nil
+                        if v1029 then
+                            v1030 = not v24[v1022.Name]
+                            v1031 = v24
+                            v1032 = v1022.Name
+                        end
+                        if v1030 then
+                            v42(v1022)
+                        end
+                    end
+                    task.wait(0.05)
+                end
+            end
+            v34 = false
+            return
+        end
+        task.spawn(v1015)
+    end
+    v1033 = v26
+    if v26 then
+        v1033 = not v35
+    end
+    if v1033 then
+        v35 = true
+        v1015 = function()
+            local v1034, v1035, v1036, v1037, v1038, v1039, v1040, v1041, v1047
+            while true do
+                if v26 then
+                    for v1037, v1038 in ipairs(v15:GetPlayers()) do
+                        if v1038 ~= v13 then
+                            v1040 = v1038:FindFirstChild("evilKarma")
+                            v1039 = v1040
+                            v1041 = v1038:FindFirstChild("goodKarma")
+                            v1040 = v1041
+                            v1041 = v1039
+                            if v1041 then
+                                v1041 = v1040
+                            end
+                            if v1041 then
+                                v1041 = v1039:IsA("IntValue")
+                            end
+                            if v1041 then
+                                v1041 = v1040:IsA("IntValue")
+                            end
+                            if v1041 then
+                                v1047 = v1041
+                                if v1039.Value < v1040.Value then
+                                    v1047 = true
+                                end
+                            end
+                            if v1047 then
+                                v42(v1038)
+                            end
+                        end
+                    end
+                    task.wait(0.05)
+                end
+            end
+            v35 = false
+            return
+        end
+        task.spawn(v1015)
+    end
+    v1048 = v25
+    if v25 then
+        v1048 = not v36
+    end
+    if v1048 then
+        v36 = true
+        v1015 = function()
+            local v1049, v1050, v1051, v1052, v1053, v1054, v1055, v1056, v1062
+            while true do
+                if v25 then
+                    for v1052, v1053 in ipairs(v15:GetPlayers()) do
+                        if v1053 ~= v13 then
+                            v1055 = v1053:FindFirstChild("evilKarma")
+                            v1054 = v1055
+                            v1056 = v1053:FindFirstChild("goodKarma")
+                            v1055 = v1056
+                            v1056 = v1054
+                            if v1056 then
+                                v1056 = v1055
+                            end
+                            if v1056 then
+                                v1056 = v1054:IsA("IntValue")
+                            end
+                            if v1056 then
+                                v1056 = v1055:IsA("IntValue")
+                            end
+                            if v1056 then
+                                v1062 = v1056
+                                if v1055.Value < v1054.Value then
+                                    v1062 = true
+                                end
+                            end
+                            if v1062 then
+                                v42(v1053)
+                            end
+                        end
+                    end
+                    task.wait(0.05)
+                end
+            end
+            v36 = false
+            return
+        end
+        task.spawn(v1015)
+    end
+    v1063 = v57
+    if v57 then
+        v1063 = not v37
+    end
+    if v1063 then
+        v37 = true
+        v1015 = function()
+            local v1065, v1066, v1067, v1068, v1069, v1070, v1071, v1072, v1073, v1074, v1075, v1076, v1077, v1080, v1081, v1082
+            while true do
+                if v57 then
+                    if v13.Character then
+                        v1066 = v13.Backpack:FindFirstChild("Punch")
+                        v1065 = v1066
+                        v1066 = v1065
+                        if v1066 then
+                            v1066 = v13.Character:FindFirstChild("Punch")
+                        end
+                        if not v1066 then
+                            v1065.Parent = v13.Character
+                        end
+                        v1067 = v13.Character:FindFirstChild("RightHand")
+                        v1066 = v1067
+                        v1068 = v13.Character:FindFirstChild("LeftHand")
+                        v1067 = v1068
+                        v1069 = v13.Character:FindFirstChild("Punch")
+                        v1068 = v1069
+                        v1069 = v1066
+                        if v1069 then
+                            v1069 = v1067
+                        end
+                        if v1069 then
+                            for v1072 in pairs(v55) do
+                                v1074 = v15:FindFirstChild(v1072)
+                                v1073 = v1074
+                                v1074 = v1073
+                                if v1074 then
+                                    v1080 = v1074
+                                    if v1073 ~= v13 then
+                                        v1080 = true
+                                    end
+                                end
+                                v1081 = false
+                                if v1080 then
+                                    v1081 = v1073.Character
+                                end
+                                if v1081 then
+                                    v1075 = v1073.Character:FindFirstChild("HumanoidRootPart")
+                                    v1074 = v1075
+                                    v1076 = v1073.Character:FindFirstChild("Humanoid")
+                                    v1075 = v1076
+                                    v1076 = v1074
+                                    if v1076 then
+                                        v1076 = v1075
+                                    end
+                                    if v1076 then
+                                        v1082 = v1076
+                                        if 0 < v1075.Health then
+                                            v1082 = true
+                                        end
+                                    end
+                                    if v1082 then
+                                        v1077 = function()
+                                            local v1083, v1085
+                                            for v1085 = 1, 4 do
+                                                firetouchinterest(v1066, v1074, 1)
+                                                firetouchinterest(v1067, v1074, 1)
+                                                firetouchinterest(v1066, v1074, 0)
+                                                firetouchinterest(v1067, v1074, 0)
+                                            end
+                                            v1083 = v13:FindFirstChild("muscleEvent")
+                                            if v1083 then
+                                                v13.muscleEvent:FireServer("punch", "rightHand")
+                                                v13.muscleEvent:FireServer("punch", "leftHand")
+                                            end
+                                            if v1068 then
+                                                v1083 = v1068:FindFirstChild("attackTime")
+                                                if v1083 then
+                                                    v1068.attackTime.Value = 0
+                                                end
+                                                v1068:Activate()
+                                            end
+                                            return
+                                        end
+                                        pcall(v1077)
+                                    end
+                                end
+                            end
+                        end
+                    end
+                    task.wait(0.03)
+                end
+            end
+            v37 = false
+            return
+        end
+        task.spawn(v1015)
+    end
+    v1091 = v29
+    if v29 then
+        v1091 = not v38
+    end
+    if v1091 then
+        v38 = true
+        v1015 = function()
+            local v1093
+            while true do
+                if v29 then
+                    v1093 = v13.Backpack:FindFirstChild("Punch")
+                    if v1093 then
+                        v1093.Parent = v13.Character
+                    end
+                    task.wait(0.1)
+                end
+            end
+            v38 = false
+            return
+        end
+        task.spawn(v1015)
+    end
+    v1097 = v30
+    if v30 then
+        v1097 = not v39
+    end
+    if v1097 then
+        v39 = true
+        v1015 = function()
+            local v1098, v1099
+            while true do
+                if v30 then
+                    v1098 = v13.Backpack:FindFirstChild("Punch")
+                    if not (v1098) and v13.Character then
+                        v1098 = v13.Character:FindFirstChild("Punch")
+                    end
+                    if v1098 then
+                        if v1098.Parent ~= v13.Character then
+                            v1098.Parent = v13.Character
+                        end
+                        v1099 = v13:FindFirstChild("muscleEvent")
+                        if v1099 then
+                            v13.muscleEvent:FireServer("punch", "rightHand")
+                            v13.muscleEvent:FireServer("punch", "leftHand")
+                        end
+                    else
+                        v30 = false
+                    end
+                    task.wait(0.01)
+                end
+            end
+            v39 = false
+            return
+        end
+        task.spawn(v1015)
+    end
+    v1107 = _G.fastHitActive
+    if _G.fastHitActive then
+        v1107 = not v40
+    end
+    if v1107 then
+        v40 = true
+        v1015 = function()
+            local v1109
+            while true do
+                if _G.fastHitActive then
+                    v1109 = v13.Backpack:FindFirstChild("Punch")
+                    if v1109 then
+                        v1109.Parent = v13.Character
+                        v1109 = v1109:FindFirstChild("attackTime")
+                        if v1109 then
+                            v1109.attackTime.Value = 0
+                        end
+                    end
+                    task.wait(0.05)
+                end
+            end
+            v40 = false
+            return
+        end
+        task.spawn(v1015)
+        v1015 = function()
+            local v1115
+            while true do
+                if _G.fastHitActive then
+                    if v13.Character then
+                        v1115 = v13.Character:FindFirstChild("Punch")
+                    end
+                    if v1115 then
+                        v1115:Activate()
+                    end
+                    task.wait(0.1)
+                end
+            end
+            return
+        end
+        task.spawn(v1015)
+    end
+    v1120 = _G.autoPunchActive
+    if _G.autoPunchActive then
+        v1120 = not v41
+    end
+    if v1120 then
+        v41 = true
+        v1015 = function()
+            local v1122
+            while true do
+                if _G.autoPunchActive then
+                    v1122 = v13.Backpack:FindFirstChild("Punch")
+                    if v1122 then
+                        v1122.Parent = v13.Character
+                        v1122 = v1122:FindFirstChild("attackTime")
+                        if v1122 then
+                            v1122.attackTime.Value = 0
+                        end
+                    end
+                    task.wait(0.05)
+                end
+            end
+            v41 = false
+            return
+        end
+        task.spawn(v1015)
+        v1015 = function()
+            local v1128
+            while true do
+                if _G.autoPunchActive then
+                    if v13.Character then
+                        v1128 = v13.Character:FindFirstChild("Punch")
+                    end
+                    if v1128 then
+                        v1128:Activate()
+                    end
+                    task.wait()
+                end
+            end
+            return
+        end
+        task.spawn(v1015)
+    end
+    return
+end
+v13.CharacterAdded:Connect(v69)
+v9:AddLabel("————————————————————————————————————————————————————————")
+v67 = v9:AddLabel("  Death Ring System")
+v67.TextSize = 20
+v68 = Color3.fromRGB(200, 0, 0)
+_G.showDeathRing = false
+_G.deathRingRange = 20
+_G.deathRingOn = false
+v67 = nil
+v70 = function()
+    local v1135, v1137, v1138, v1140
+    if not v67 then
+        return
+    end
+    v1140 = _G.deathRingRange
+    if not (_G.deathRingRange) then
+        v1140 = 20
+    end
+    v1137 = (v1140 * 2)
+    v1138 = (v1140 * 2)
+    v1135 = Vector3.new(0.2, v1137, v1138)
+    v67.Size = v1135
+    return
+end
+v69 = 0.55
+v71 = function()
+    local v1141
+    if v67 then
+        v67:Destroy()
+        v67 = nil
+    end
+    if not _G.showDeathRing then
+        return
+    end
+    v1141 = Instance.new("Part")
+    v67 = v1141
+    v67.Name = "DeathRingVisual"
+    v67.Shape = Enum.PartType.Cylinder
+    v67.Material = Enum.Material.Neon
+    v67.Color = v68
+    v67.Transparency = v69
+    v67.Anchored = true
+    v67.CanCollide = false
+    v67.CastShadow = false
+    v70()
+    v67.Parent = workspace
+    return
+end
+v74 = function()
+    local v1146, v1147
+    if not v67 then
+        return
+    end
+    v1146 = v13.Character
+    if not (v1146) then
+        return
+    end
+    v1147 = v13.Character:FindFirstChild("HumanoidRootPart")
+    if v1147 then
+        v67.CFrame = (v1147.CFrame * CFrame.Angles)
+    end
+    return
+end
+v12.Heartbeat:Connect(v74)
+v72 = function()
+    local v1157
+    v1157 = function()
+        local v1160, v1161, v1162, v1164, v1165, v1166, v1167, v1168, v1169, v1170, v1171, v1174, v1176, v1177, v1179, v1181, v1182, v1183, v1184, v1185
+        local v1186
+        if v13.Character then
+            v1161 = v13.Backpack:FindFirstChild("Punch")
+            v1160 = v1161
+            v1161 = v1160
+            if v1161 then
+                v1161 = v13.Character:FindFirstChild("Punch")
+            end
+            if not v1161 then
+                v1160.Parent = v13.Character
+            end
+        end
+        while true do
+            if _G.deathRingOn then
+                if v13.Character then
+                    v1162 = v13.Character:FindFirstChild("HumanoidRootPart")
+                    if v1162 then
+                        v1181 = _G.deathRingRange
+                        if not (_G.deathRingRange) then
+                            v1181 = 20
+                        end
+                        v1165 = v13.Character:FindFirstChild("RightHand")
+                        v1164 = v1165
+                        v1166 = v13.Character:FindFirstChild("LeftHand")
+                        v1165 = v1166
+                        v1167 = v13.Character:FindFirstChild("Punch")
+                        v1166 = v1167
+                        v1167 = v1166
+                        if not (v1167) then
+                            v1168 = v13.Backpack:FindFirstChild("Punch")
+                            if v1168 then
+                                v1168.Parent = v13.Character
+                                v1166 = v1168
+                            end
+                        end
+                        if v1164 then
+                            v1167 = v1165
+                        end
+                        if v1167 then
+                            for v1170, v1171 in ipairs(v15:GetPlayers()) do
+                                v1182 = v15
+                                if v1171 ~= v13 then
+                                    v1182 = true
+                                end
+                                v1183 = false
+                                v1184 = v13
+                                v1185 = nil
+                                if v1182 then
+                                    v1183 = not v24[v1171.Name]
+                                    v1184 = v24
+                                    v1185 = v1171.Name
+                                end
+                                if v1183 then
+                                    if v1171.Character then
+                                        v1177 = v1171.Character:FindFirstChild("HumanoidRootPart")
+                                        v1176 = v1177
+                                        v1177 = v1171.Character:FindFirstChild("Humanoid")
+                                        v1174 = v1177
+                                        v1177 = v1176
+                                        if v1177 then
+                                            v1177 = v1174
+                                        end
+                                        if v1177 then
+                                            v1186 = v1177
+                                            if 0 < v1174.Health then
+                                                v1186 = true
+                                            end
+                                        end
+                                        if v1186 then
+                                            if ((v1162.Position - v1176.Position)).Magnitude <= v1181 then
+                                                v1179 = function()
+                                                    local v1187, v1189
+                                                    for v1189 = 1, 5 do
+                                                        firetouchinterest(v1164, v1176, 1)
+                                                        firetouchinterest(v1165, v1176, 1)
+                                                        firetouchinterest(v1164, v1176, 0)
+                                                        firetouchinterest(v1165, v1176, 0)
+                                                    end
+                                                    v1187 = v13:FindFirstChild("muscleEvent")
+                                                    if v1187 then
+                                                        v13.muscleEvent:FireServer("punch", "rightHand")
+                                                        v13.muscleEvent:FireServer("punch", "leftHand")
+                                                    end
+                                                    if v1166 then
+                                                        v1187 = v1166:FindFirstChild("attackTime")
+                                                        if v1187 then
+                                                            v1166.attackTime.Value = 0
+                                                        end
+                                                        v1166:Activate()
+                                                    end
+                                                    return
+                                                end
+                                                pcall(v1179)
+                                            end
+                                        end
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+                task.wait(0.03)
+            end
+        end
+        return
+    end
+    task.spawn(v1157)
+    return
+end
+v76 = function(v1195)
+    local v1196, v1198, v1199
+    v1196 = tonumber(v1195)
+    if v1196 then
+        v1199 = v1196
+        v1198 = math.clamp(v1199, 1, 140)
+        _G.deathRingRange = v1198
+        v70()
+    end
+    return
+end
+v9:AddTextBox("Death Ring Range (1-140)", v76)
+v76 = function(v1203)
+    local v1205, v1206
+    _G.deathRingOn = v1203
+    if v1203 then
+        if v13.Character then
+            v1206 = v13.Backpack:FindFirstChild("Punch")
+            v1205 = v1206
+            v1206 = v1205
+            if v1206 then
+                v1206 = v13.Character:FindFirstChild("Punch")
+            end
+            if not v1206 then
+                v1205.Parent = v13.Character
+            end
+        end
+        v72()
+    end
+    return
+end
+v9:AddSwitch("Death Ring [AUTO KILL]", v76)
+v76 = function(v1210)
+    _G.showDeathRing = v1210
+    v71()
+    return
+end
+v9:AddSwitch("Show Death Ring Visual", v76)
+v76 = function()
+    local v1213, v1214, v1215, v1216, v1217, v1218, v1219
+    v1213 = {}
+    v1215 = Color3.fromRGB(255, 0, 0)
+    v1213[1] = v1215
+    v1215 = Color3.fromRGB(0, 200, 255)
+    v1213[2] = v1215
+    v1215 = Color3.fromRGB(180, 0, 255)
+    v1213[3] = v1215
+    v1215 = Color3.fromRGB(255, 160, 0)
+    v1213[4] = v1215
+    v1213[5] = Color3.fromRGB(0, 255, 80)
+    for v1218, v1219 in ipairs(v1213) do
+        if v68 == v1219 then
+            v1214 = v1218
+            break
+        end
+    end
+    v1218 = v1213
+    v68 = v1213[((v1214 % #v1218) + 1)]
+    if v67 then
+        v67.Color = v68
+    end
+    return
+end
+v9:AddButton("Change Ring Color", v76)
+v76 = function()
+    local v1224, v1225, v1226, v1227, v1228, v1229, v1235
+    v1224 = {}
+    v1224[1] = 0.2
+    v1224[2] = 0.4
+    v1224[3] = 0.6
+    v1224[4] = 0.8
+    for v1228, v1229 in ipairs(v1224) do
+        if math.abs((v69 - v1229)) < 0.12 then
+            v1235 = v1224
+            v69 = v1224[((v1228 % #v1235) + 1)]
+            break
+        end
+    end
+    if v67 then
+        v67.Transparency = v69
+    end
+    return
+end
+v9:AddButton("Change Ring Transparency", v76)
+v74 = function()
+    local v1238, v1239, v1246, v1247
+    while true do
+        if task.wait(0.15) then
+            if _G.deathRingOn then
+                v1239 = v13.Backpack:FindFirstChild("Punch")
+                v1238 = v1239
+                v1239 = v1238
+                v1246 = v1239
+                v1247 = v13.Backpack
+                if v1239 then
+                    v1246 = v13.Character
+                    v1247 = v13
+                end
+                if v1246 then
+                    v1239 = v13.Character:FindFirstChild("Punch")
+                end
+                if not v1239 then
+                    v1238.Parent = v13.Character
+                    continue
+                end
+                continue
+            end
+            continue
+        end
+    end
+    return
+end
+task.spawn(v74)
+v75 = function()
+    local v1248, v1249, v1256, v1257
+    task.wait(1)
+    if _G.deathRingOn then
+        v1249 = v13.Backpack:FindFirstChild("Punch")
+        v1248 = v1249
+        v1249 = v1248
+        v1256 = v1249
+        v1257 = v13.Backpack
+        if v1249 then
+            v1256 = v13.Character
+            v1257 = v13
+        end
+        if v1256 then
+            v1249 = v13.Character:FindFirstChild("Punch")
+        end
+        if not v1249 then
+            v1248.Parent = v13.Character
+        end
+    end
+    return
+end
+v13.CharacterAdded:Connect(v75)
+v75 = function(v1258)
+    if v1258 == v13 then
+        if v67 then
+            v67:Destroy()
+            v67 = nil
+        end
+        _G.deathRingOn = false
+    end
+    return
+end
+v15.PlayerRemoving:Connect(v75)
+v9:AddLabel("————————————————————————————————————————————————————————")
+v73 = v9:AddLabel("  Blacklist Auto Kill")
+v73.TextSize = 20
+v73 = v9:AddLabel("  Display name OR CLAN TAG ")
+v73.TextSize = 13
+v73 = {}
+v74 = {}
+v77 = function(v1262)
+    return v1262:match("^%s*(.-)%s*$")
+end
+v78 = function(v1267)
+    local v1268, v1269, v1270, v1271, v1273, v1274, v1277
+    v1268 = {}
+    v73 = v1268
+    v1268 = v1267
+    if not (not v1268) then
+        v1277 = not v1268
+        if v1267 == "" then
+            v1277 = true
+        end
+    end
+    if v1277 then
+        return
+    end
+    for v1271 in string.gmatch(v1267, "[^,]+") do
+        v1274 = v77(v1271)
+        v1273 = v1274:lower()
+        if v1273 ~= "" then
+            table.insert(v73, v1273)
+        end
+    end
+    return
+end
+v79 = function()
+    return
+end
+v80 = function(v1280)
+    local v1281, v1282, v1283, v1284, v1285, v1286, v1287, v1288, v1289, v1294, v1295
+    v1281 = v1280
+    if not (v1281) then
+        return false
+    end
+    v1294 = v1280.DisplayName
+    if not (v1280.DisplayName) then
+        v1294 = ""
+    end
+    v1282 = v1294:lower()
+    v1281 = v1282
+    for v1285, v1286 in ipairs(v73) do
+        v1295 = nil
+        if v1286 ~= "" then
+            v1295 = true
+        end
+        if v1295 then
+            v1288 = v1281
+            v1289 = v1286
+            v1287 = string.find(v1288, v1289, 1, true)
+        end
+        if v1287 then
+            return true
+        end
+    end
+    return false
+end
+v81 = function()
+    local v1296, v1297, v1298, v1299, v1300, v1301, v1306
+    for v1299 in pairs(v74) do
+        v74[v1299] = nil
+    end
+    for v1299, v1300 in ipairs(v15:GetPlayers()) do
+        v1306 = v15
+        if v1300 ~= v13 then
+            v1306 = true
+        end
+        if v1306 then
+            v1301 = v80(v1300)
+        end
+        if v1301 then
+            v74[v1300] = true
+        end
+    end
+    return
+end
+v82 = function()
+    local v1307, v1308, v1309, v1310
+    for v1310 in pairs(v74) do
+        return true
+    end
+    return false
+end
+v83 = function(v1313)
+    local v1314, v1315
+    repeat
+        task.wait()
+        if v1313 then
+            v1314 = v1313:FindFirstChild("RightHand")
+        end
+    until v1314
+    v1314 = v1313:FindFirstChild("RightHand")
+    if not (v1314) then
+        v1314 = v1313:FindFirstChild("Right Arm")
+    end
+    v1315 = v1313:FindFirstChild("LeftHand")
+    if not (v1315) then
+        v1315 = v1313:FindFirstChild("Left Arm")
+    end
+    return v1314, v1315
+end
+v84 = function()
+    local v1319, v1320, v1321, v1322, v1326
+    v1319 = v82()
+    if not (v1319) then
+        return nil
+    end
+    v1320 = v13.Character
+    if not v1320 then
+        return nil
+    end
+    v1320 = v13.Character:FindFirstChild("Punch")
+    if not (v1320) then
+        v1320 = v13.Backpack:FindFirstChild("Punch")
+    end
+    if v1320 then
+        v1326 = v1320
+        if v1320.Parent ~= v13.Character then
+            v1326 = true
+        end
+    end
+    if v1326 then
+        v1320.Parent = v13.Character
+    end
+    v1321 = v1320
+    if not (v1321) then
+        v1322 = function()
+            local v1329, v1330, v1331
+            for v1329 = 1, 40 do
+                v1330 = v82()
+                if not (v1330) then
+                    return
+                end
+                v1331 = v13.Backpack:FindFirstChild("Punch")
+                if v1331 then
+                    v1331.Parent = v13.Character
+                    break
+                end
+                task.wait(0.1)
+            end
+            return
+        end
+        task.defer(v1322)
+    end
+    return v13.Character:FindFirstChild("Punch")
+end
+v76 = false
+v85 = function()
+    local v1335, v1336, v1337
+    if not (v13.Character) then
+        v1335 = v13.CharacterAdded:Wait()
+    end
+    v76 = true
+    v1337 = function()
+        local v1340, v1342, v1344
+        repeat
+            task.wait()
+            v1340 = v13:FindFirstChild("Backpack")
+        until v1340
+        v1340 = v82()
+        if v1340 then
+            for v1342 = 1, 60 do
+                v1344 = v13.Backpack:FindFirstChild("Punch")
+                if v1344 then
+                    v1344.Parent = v1335
+                    break
+                end
+                task.wait(0.1)
+                if (1 > 0 and (v1342 + 1) <= 60) or (1 <= 0 and (v1342 + 1) >= 60) then continue end
+                break
+            end
+        end
+        return
+    end
+    task.spawn(v1337)
+    v1336 = v1335
+    return v1336
+end
+v87 = v9:AddLabel("Blacklist: (empty)")
+v86 = v87
+v86.TextSize = 13
+v90 = function(v1348)
+    local v1349, v1352, v1355, v1356
+    v1352 = v1348
+    v78(((table.concat(v73, ",") .. ",") .. v1352))
+    v79()
+    v1355 = v78
+    if #v73 == 0 then
+        v1355 = true
+    end
+    v1356 = false
+    if v1355 then
+        v1356 = "Blacklist: (empty)"
+    end
+    if not (v1356) then
+        v1349 = ("Blacklist: " .. table.concat(v73, ", "))
+    end
+    v86.Text = v1349
+    v81()
+    return
+end
+v91 = {}
+v91["placeholder"] = "Örn: MVX, Sigma, Clan"
+v9:AddTextBox("Add to Blacklist", v90, v91)
+v90 = function(v1357)
+    local v1358, v1359, v1360, v1361, v1362, v1363, v1364, v1365, v1366, v1373, v1374
+    v1358 = {}
+    for v1362 in string.gmatch(v1357, "[^,]+") do
+        v1365 = v77(v1362)
+        v1364 = v1365:lower()
+        if v1364 ~= "" then
+            table.insert(v1358, v1364)
+        end
+    end
+    for v1362, v1363 in ipairs(v1358) do
+        for v1366 = #v73, 1, -1 do
+            if v73[v1366] == v1363 then
+                table.remove(v73, v1366)
+            end
+        end
+    end
+    v79()
+    v1373 = v1358
+    if #v73 == 0 then
+        v1373 = true
+    end
+    v1374 = false
+    if v1373 then
+        v1374 = "Blacklist: (empty)"
+    end
+    if not (v1374) then
+        v1358 = ("Blacklist: " .. table.concat(v73, ", "))
+    end
+    v86.Text = v1358
+    v81()
+    return
+end
+v9:AddTextBox("Remove from Blacklist", v90)
+v89 = function()
+    v81()
+    return
+end
+v12.Heartbeat:Connect(v89)
+v75 = 0.06
+v88 = function()
+    local v1377, v1378, v1379, v1380, v1381, v1382, v1383, v1384, v1385, v1386, v1389, v1390
+    while true do
+        task.wait(v75)
+        v1377 = v82()
+        if not (v1377) then
+            continue
+        end
+        if not (v13.Character) then
+            continue
+        end
+        if not (v76) then
+            continue
+        end
+        v1377 = v84()
+        v1378 = v1377
+        if not (v1378) then
+            continue
+        end
+        v1380, v1381 = v83(v13.Character)
+        v1378 = v1380
+        v1379 = v1381
+        for v1383 in pairs(v74) do
+            v1389 = v1383
+            if v1383 then
+                v1389 = v1383.Character
+            end
+            if v1389 then
+                v1385 = v1383.Character:FindFirstChild("HumanoidRootPart")
+                v1384 = v1385
+                v1385 = v1383.Character:FindFirstChild("Humanoid")
+                v1377 = v1385
+                v1385 = v1384
+                if v1385 then
+                    v1385 = v1377
+                end
+                if v1385 then
+                    v1390 = v1385
+                    if 0 < v1377.Health then
+                        v1390 = true
+                    end
+                end
+                if v1390 then
+                    v1386 = function()
+                        v13.muscleEvent:FireServer("punch", "rightHand")
+                        v13.muscleEvent:FireServer("punch", "leftHand")
+                        return
+                    end
+                    pcall(v1386)
+                    v1386 = function()
+                        firetouchinterest(v1378, v1384, 1)
+                        firetouchinterest(v1379, v1384, 1)
+                        firetouchinterest(v1378, v1384, 0)
+                        firetouchinterest(v1379, v1384, 0)
+                        return
+                    end
+                    pcall(v1386)
+                end
+            end
+        end
+    end
+    return
+end
+task.spawn(v88)
+v89 = function(v1401)
+    local v1403, v1404
+    v1403 = v1401:GetPropertyChangedSignal("DisplayName")
+    v1404 = function()
+        v81()
+        return
+    end
+    v1403:Connect(v1404)
+    return
+end
+v15.PlayerAdded:Connect(v89)
+v89 = function()
+    local v1409, v1410
+    v76 = false
+    task.wait(0.2)
+    v85()
+    v81()
+    v1409 = v82()
+    if v1409 then
+        v1410 = function()
+            local v1414, v1415
+            for v1414 = 1, 50 do
+                v1415 = v82()
+                if not (v1415) then
+                    break
+                end
+                v84()
+                task.wait(0.15)
+            end
+            return
+        end
+        task.defer(v1410)
+    end
+    return
+end
+v13.CharacterAdded:Connect(v89)
+v87 = v85
+v87()
+v87()
+v88 = v7:AddTab("Target")
+v87 = v88
+v88 = v87:AddLabel("Target Systems")
+v88.TextSize = 30
+v88 = {}
+v89 = {}
+v94 = v87:AddLabel("TARGETS: none")
+v93 = v94
+v93.TextSize = 17
+v94 = Color3.fromRGB(220, 0, 0)
+v93.TextColor3 = v94
+v90 = nil
+v94 = function()
+    local v1419, v1424
+    v90 = nil
+    v28 = false
+    if v13.Character then
+        v1419 = v13.Character:FindFirstChild("Humanoid")
+    end
+    v1424 = v1419
+    if not (v1419) then
+        v1424 = v13
+    end
+    workspace.CurrentCamera.CameraSubject = v1424
+    return
+end
+v95 = function(v1425)
+    local v1427
+    if v89[v1425] then
+        if v90 == v1425 then
+            v94()
+        end
+        v1427 = function()
+            v89[v1425].Remove(v89[v1425])
+            return
+        end
+        pcall(v1427)
+        v89[v1425] = nil
+    end
+    return
+end
+v96 = function(v1435, v1436)
+    local v1437, v1438, v1440, v1441, v1442
+    if v89[v1435] then
+        return
+    end
+    v1442 = v1436
+    v1440 = ("Spy: " .. v1442)
+    v1441 = function(v1444)
+        local v1446, v1449, v1451
+        if v1444 then
+            if v90 then
+                v1451 = v90
+                if v90 ~= v1435 then
+                    v1451 = true
+                end
+            end
+            if v1451 then
+                if v89[v90] then
+                    v1449 = function()
+                        v89[v90].Set(v89[v90], false)
+                        return
+                    end
+                    pcall(v1449)
+                end
+            end
+            v90 = v1435
+            v28 = true
+            v62 = v1435
+            v1446 = function()
+                local v1457, v1458, v1463, v1464
+                while true do
+                    if v90 == v1435 then
+                        v1458 = v15:FindFirstChild(v1435)
+                        v1457 = v1458
+                        v1458 = v1457
+                        if v1458 then
+                            v1463 = v1458
+                            if v1457 ~= v13 then
+                                v1463 = true
+                            end
+                        end
+                        if v1463 then
+                            if v1457.Character then
+                                v1458 = v1457.Character:FindFirstChild("Humanoid")
+                            end
+                            if v1458 then
+                                workspace.CurrentCamera.CameraSubject = v1458
+                            end
+                        end
+                        task.wait(0.1)
+                    end
+                end
+                if v13.Character then
+                    v1458 = v13.Character:FindFirstChild("Humanoid")
+                end
+                v1464 = v1458
+                if not (v1458) then
+                    v1464 = v13
+                end
+                workspace.CurrentCamera.CameraSubject = v1464
+                return
+            end
+            task.spawn(v1446)
+        else
+            if v90 == v1435 then
+                v94()
+            end
+        end
+        return
+    end
+    v1438 = v87:AddSwitch(v1440, v1441)
+    v1437 = v1438
+    v89[v1435] = v1437
+    return
+end
+v97 = function()
+    local v1465, v1466, v1467, v1468, v1469, v1470
+    v1465 = {}
+    for v1469, v1470 in pairs(v88) do
+        table.insert(v1465, v1470)
+    end
+    v1466 = v1465
+    if #v1466 == 0 then
+        v93.Text = "TARGETS: none"
+    else
+        v93.Text = ("TARGETS: " .. table.concat(v1465, "   |   "))
+    end
+    for v1469 in pairs(v89) do
+        if not (v88[v1469]) then
+            v95(v1469)
+        end
+    end
+    for v1469, v1470 in pairs(v88) do
+        if not (v89[v1469]) then
+            v96(v1469, v1470)
+        end
+    end
+    return
+end
+v102 = function(v1477)
+    local v1478, v1479, v1480, v1481, v1482
+    for v1481, v1482 in ipairs(v15:GetPlayers()) do
+        if v1482.DisplayName == v1477 then
+            if not (v88[v1482.Name]) then
+                v88[v1482.Name] = v1482.DisplayName
+                v97()
+                break
+            end
+            break
+        end
+    end
+    return
+end
+v99 = v87:AddDropdown("Add Target", v102)
+v98 = v99
+for v102, v103 in ipairs(v15:GetPlayers()) do
+    if v103 ~= v13 then
+        v105 = v98
+        v105:Add(v103.DisplayName)
+    end
+end
+v101 = function(v1490)
+    if v1490 ~= v13 then
+        v98:Add(v1490.DisplayName)
+    end
+    return
+end
+v15.PlayerAdded:Connect(v101)
+v101 = function(v1495)
+    if v88[v1495.Name] then
+        v88[v1495.Name] = nil
+        v97()
+    end
+    return
+end
+v15.PlayerRemoving:Connect(v101)
+v102 = function()
+    local v1504, v1505, v1506, v1507, v1509
+    v94()
+    for v1507 in pairs(v89) do
+        v1509 = function()
+            v89[v1507].Remove(v89[v1507])
+            return
+        end
+        pcall(v1509)
+        v89[v1507] = nil
+    end
+    v1504 = {}
+    v88 = v1504
+    v97()
+    return
+end
+v87:AddButton("Clear All Targets", v102)
+v87:AddLabel("————————————————————————————")
+v91 = false
+v99 = function()
+    local v1518
+    v1518 = function()
+        local v1520, v1521, v1522, v1523, v1524, v1525, v1526, v1527, v1528, v1529, v1530, v1531, v1532, v1533, v1536, v1537, v1538
+        repeat
+            task.wait()
+            if not (not v91) and v13.Character then
+                v1520 = v13.Character:FindFirstChild("Punch")
+                if not (v1520) then
+                    v1520 = v13.Backpack:FindFirstChild("Punch")
+                end
+            end
+        until v1520
+        while true do
+            if v91 then
+                if v13.Character then
+                    v1522 = v13.Backpack:FindFirstChild("Punch")
+                    v1521 = v1522
+                    v1522 = v1521
+                    if v1522 then
+                        v1522 = v13.Character:FindFirstChild("Punch")
+                    end
+                    if not v1522 then
+                        v1521.Parent = v13.Character
+                    end
+                    v1523 = v13.Character:FindFirstChild("RightHand")
+                    v1522 = v1523
+                    v1524 = v13.Character:FindFirstChild("LeftHand")
+                    v1523 = v1524
+                    v1525 = v13.Character:FindFirstChild("Punch")
+                    v1524 = v1525
+                    v1525 = v1522
+                    if v1525 then
+                        v1525 = v1523
+                    end
+                    if v1525 then
+                        for v1528 in pairs(v88) do
+                            v1530 = v15:FindFirstChild(v1528)
+                            v1529 = v1530
+                            v1530 = v1529
+                            if v1530 then
+                                v1536 = v1530
+                                if v1529 ~= v13 then
+                                    v1536 = true
+                                end
+                            end
+                            v1537 = false
+                            if v1536 then
+                                v1537 = v1529.Character
+                            end
+                            if v1537 then
+                                v1531 = v1529.Character:FindFirstChild("HumanoidRootPart")
+                                v1530 = v1531
+                                v1532 = v1529.Character:FindFirstChild("Humanoid")
+                                v1531 = v1532
+                                v1532 = v1530
+                                if v1532 then
+                                    v1532 = v1531
+                                end
+                                if v1532 then
+                                    v1538 = v1532
+                                    if 0 < v1531.Health then
+                                        v1538 = true
+                                    end
+                                end
+                                if v1538 then
+                                    v1533 = function()
+                                        local v1539, v1541
+                                        for v1541 = 1, 4 do
+                                            firetouchinterest(v1522, v1530, 1)
+                                            firetouchinterest(v1523, v1530, 1)
+                                            firetouchinterest(v1522, v1530, 0)
+                                            firetouchinterest(v1523, v1530, 0)
+                                        end
+                                        v1539 = v13:FindFirstChild("muscleEvent")
+                                        if v1539 then
+                                            v13.muscleEvent:FireServer("punch", "rightHand")
+                                            v13.muscleEvent:FireServer("punch", "leftHand")
+                                        end
+                                        if v1524 then
+                                            v1539 = v1524:FindFirstChild("attackTime")
+                                            if v1539 then
+                                                v1524.attackTime.Value = 0
+                                            end
+                                            v1524:Activate()
+                                        end
+                                        return
+                                    end
+                                    pcall(v1533)
+                                end
+                            end
+                        end
+                    end
+                end
+                task.wait()
+            end
+        end
+        return
+    end
+    task.spawn(v1518)
+    return
+end
+v92 = nil
+v103 = function(v1547)
+    local v1548, v1550
+    v91 = v1547
+    if v92 then
+        v92:Disconnect()
+        v92 = nil
+    end
+    if v1547 then
+        v99()
+        v1550 = function()
+            if v91 then
+                v99()
+            end
+            return
+        end
+        v1548 = v13.CharacterAdded:Connect(v1550)
+        v92 = v1548
+    end
+    return
+end
+v87:AddSwitch("Auto Kill Target", v103)
+v100 = v97
+v100()
+v100 = v87:AddLabel("Auto Kill Clans")
+v100.TextSize = 20
+v106 = false
+v100 = false
+v101 = false
+v102 = false
+v103 = false
+v104 = false
+v105 = nil
+v107 = function()
+    local v1555
+    if v106 then
+        return
+    end
+    v106 = true
+    v1555 = function()
+        local v1558, v1559, v1560, v1561, v1562, v1563, v1564, v1565, v1566, v1567, v1568, v1569, v1570, v1571, v1572, v1573, v1576, v1577, v1578, v1579
+        local v1580, v1581, v1582, v1583, v1584, v1585, v1586, v1587, v1588, v1589
+        while true do
+            v1576 = v100
+            if not (v100) then
+                v1576 = v101
+            end
+            v1577 = v1576
+            if not (v1576) then
+                v1577 = v102
+            end
+            v1578 = v1577
+            if not (v1577) then
+                v1578 = v103
+            end
+            v1579 = v1578
+            if not (v1578) then
+                v1579 = v104
+            end
+            v1558 = v1579
+            if not (v1558) then
+                task.wait(1)
+                continue
+            end
+            v1559 = v13.Character
+            if not (v1559) then
+                task.wait(0.5)
+                continue
+            end
+            v1560 = v13.Character:FindFirstChild("Punch")
+            v1559 = v1560
+            v1560 = v1559
+            if not (v1560) then
+                v1561 = v13.Backpack:FindFirstChild("Punch")
+                if v1561 then
+                    v1561.Parent = v13.Character
+                    v1559 = v1561
+                else
+                    task.wait(0.5)
+                    continue
+                end
+            end
+            v1561 = v13.Character:FindFirstChild("RightHand")
+            v1560 = v1561
+            v1562 = v13.Character:FindFirstChild("LeftHand")
+            v1561 = v1562
+            v1562 = v1560
+            if not (not v1562) then
+                v1562 = v1561
+            end
+            if not v1562 then
+                task.wait(0.5)
+                continue
+            end
+            for v1565, v1566 in ipairs(v15:GetPlayers()) do
+                if v1566 == v13 then
+                else
+                    if v24[v1566.Name] then
+                    else
+                        v1567 = v1566.Name:lower()
+                        v1558 = v1567
+                        v1568 = v1566.DisplayName:lower()
+                        v1567 = v1568
+                        if v100 then
+                            v1569 = v1558:find("slh")
+                            if not (v1569) then
+                                v1569 = v1567:find("slh")
+                            end
+                            v1580 = false
+                            if v1569 then
+                                v1580 = true
+                            end
+                        end
+                        v1569 = v1580
+                        v1581 = not v1569
+                        if not v1569 then
+                            v1581 = v101
+                        end
+                        if v1581 then
+                            v1569 = v1558:find("therealdevil")
+                            if not (v1569) then
+                                v1569 = v1567:find("therealdevil")
+                            end
+                            v1582 = v1580
+                            if v1569 then
+                                v1582 = true
+                            end
+                        end
+                        v1569 = v1582
+                        v1583 = not v1569
+                        if not v1569 then
+                            v1583 = v102
+                        end
+                        if v1583 then
+                            v1569 = v1558:find("trd")
+                            if not (v1569) then
+                                v1569 = v1567:find("trd")
+                            end
+                            v1584 = v1582
+                            if v1569 then
+                                v1584 = true
+                            end
+                        end
+                        v1569 = v1584
+                        v1585 = not v1569
+                        if not v1569 then
+                            v1585 = v103
+                        end
+                        if v1585 then
+                            v1569 = v1558:find("1x1")
+                            if not (v1569) then
+                                v1569 = v1567:find("1x1")
+                            end
+                            v1586 = v1584
+                            if v1569 then
+                                v1586 = true
+                            end
+                        end
+                        v1569 = v1586
+                        v1587 = not v1569
+                        if not v1569 then
+                            v1587 = v104
+                        end
+                        if v1587 then
+                            v1569 = v1558:find("kts")
+                            if not (v1569) then
+                                v1569 = v1567:find("kts")
+                            end
+                            v1588 = v1586
+                            if v1569 then
+                                v1588 = true
+                            end
+                        end
+                        if v1588 then
+                            if v1566.Character then
+                                v1571 = v1566.Character:FindFirstChild("HumanoidRootPart")
+                                v1570 = v1571
+                                v1572 = v1566.Character:FindFirstChild("Humanoid")
+                                v1571 = v1572
+                                v1572 = v1570
+                                if v1572 then
+                                    v1572 = v1571
+                                end
+                                if v1572 then
+                                    v1589 = v1572
+                                    if 0 < v1571.Health then
+                                        v1589 = true
+                                    end
+                                end
+                                if v1589 then
+                                    v1573 = function()
+                                        local v1590, v1592
+                                        for v1592 = 1, 4 do
+                                            firetouchinterest(v1560, v1570, 1)
+                                            firetouchinterest(v1561, v1570, 1)
+                                            firetouchinterest(v1560, v1570, 0)
+                                            firetouchinterest(v1561, v1570, 0)
+                                        end
+                                        v1590 = v13:FindFirstChild("muscleEvent")
+                                        if v1590 then
+                                            v13.muscleEvent:FireServer("punch", "rightHand")
+                                            v13.muscleEvent:FireServer("punch", "leftHand")
+                                        end
+                                        if v1559 then
+                                            v1590 = v1559:FindFirstChild("attackTime")
+                                            if v1590 then
+                                                v1559.attackTime.Value = 0
+                                            end
+                                            v1559:Activate()
+                                        end
+                                        return
+                                    end
+                                    pcall(v1573)
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+            task.wait()
+        end
+        return
+    end
+    v105 = task.spawn(v1555)
+    return
+end
+v108 = function()
+    if v105 then
+        task.cancel(v105)
+        v105 = nil
+    end
+    v106 = false
+    return
+end
+v109 = function()
+    local v1603, v1604, v1605, v1606
+    v1603 = v100
+    if not (v100) then
+        v1603 = v101
+    end
+    v1604 = v1603
+    if not (v1603) then
+        v1604 = v102
+    end
+    v1605 = v1604
+    if not (v1604) then
+        v1605 = v103
+    end
+    v1606 = v1605
+    if not (v1605) then
+        v1606 = v104
+    end
+    if not v1606 then
+        v108()
+    end
+    return
+end
+v113 = function(v1607)
+    v100 = v1607
+    if v1607 then
+        v107()
+    else
+        v109()
+    end
+    return
+end
+v87:AddSwitch("Auto Kill SLH", v113)
+v113 = function(v1610)
+    v101 = v1610
+    if v1610 then
+        v107()
+    else
+        v109()
+    end
+    return
+end
+v87:AddSwitch("Auto Kill THEREALDEVIL", v113)
+v113 = function(v1613)
+    v102 = v1613
+    if v1613 then
+        v107()
+    else
+        v109()
+    end
+    return
+end
+v87:AddSwitch("Auto Kill TRD", v113)
+v113 = function(v1616)
+    v103 = v1616
+    if v1616 then
+        v107()
+    else
+        v109()
+    end
+    return
+end
+v87:AddSwitch("Auto Kill 1x1", v113)
+v113 = function(v1619)
+    v104 = v1619
+    if v1619 then
+        v107()
+    else
+        v109()
+    end
+    return
+end
+v87:AddSwitch("Auto Kill KTS", v113)
+v110 = v7:AddTab("GOD MODE")
+v9 = v110
+v110 = v9:AddLabel("PACK SPAM SETTINGS")
+v110.TextSize = 26
+v110 = 0.02
+v115 = function(v1622)
+    local v1623, v1627
+    v1623 = tonumber(v1622)
+    if v1623 then
+        v1627 = v1623
+        if 0 < v1623 then
+            v1627 = true
+        end
+    end
+    if v1627 then
+        v110 = v1623
+    else
+        v110 = 0.02
+    end
+    return
+end
+v112 = v9:AddDropdown("Pack Spam Speed (seconds)", v115)
+v111 = v112
+v111:Add("0.01")
+v111:Add("0.02")
+v111:Add("0.03")
+v111:Add("0.04")
+v111:Add("0.05")
+v111:Add("0.06")
+v111:Add("0.07")
+v113 = function()
+    v111:Set("0.02")
+    return
+end
+pcall(v113)
+v113 = function()
+    v111:Select("0.02")
+    return
+end
+pcall(v113)
+v112 = false
+v113 = nil
+v117 = function(v1636)
+    local v1638
+    v112 = v1636
+    if v113 then
+        task.cancel(v113)
+        v113 = nil
+    end
+    if v1636 then
+        v1638 = function()
+            local v1640, v1641, v1642, v1643, v1644, v1645, v1646, v1647, v1648, v1649, v1650, v1652, v1653
+            v1640 = function()
+                local v1657
+                v1657 = v11:FindFirstChild("rEvents")
+                if v1657 then
+                    return v1657:FindFirstChild("equipPetEvent")
+                end
+                return nil
+            end
+            v1641 = function(v1661, v1662)
+                local v1663, v1664, v1665, v1666, v1667, v1668, v1671, v1672, v1673, v1674, v1675, v1679
+                v1663 = v1661
+                if not (not v1663) then
+                    v1663 = v1662
+                end
+                if not v1663 then
+                    return
+                end
+                for v1666, v1667 in pairs(v1662:GetChildren()) do
+                    v1668 = v1667:IsA("Folder")
+                    if v1668 then
+                        for v1674, v1675 in pairs(v1667:GetChildren()) do
+                            v1679 = v1675
+                            v1661:FireServer("unequipPet", v1679)
+                        end
+                    end
+                end
+                return
+            end
+            v1642 = function(v1681, v1682)
+                local v1683, v1684, v1685, v1686, v1687, v1688
+                v1683 = {}
+                v1684 = v1681
+                if not (v1684) then
+                    v1684 = v1683
+                    return v1684
+                end
+                for v1687, v1688 in pairs(v1681:GetChildren()) do
+                    if v1688.Name == v1682 then
+                        table.insert(v1683, v1688)
+                    end
+                end
+                v1684 = v1683
+                return v1684
+            end
+            while true do
+                if v112 then
+                    v1644 = v13:FindFirstChild("petsFolder")
+                    v1643 = v1644
+                    v1644 = v1640
+                    v1644 = v1644()
+                    if v1643 then
+                        v1645 = v1644
+                    end
+                    if v1645 then
+                        v1646 = v1643:FindFirstChild("Unique")
+                        v1645 = v1646
+                        v1646 = v1641
+                        v1646(v1644, v1643)
+                        task.wait(v110)
+                        v1646 = v1642
+                        v1652 = v1646(v1645, "Mighty Monster")
+                        v1647 = math.min(8, #v1652)
+                        for v1649 = 1, v1647 do
+                            if not v112 then
+                                return
+                            end
+                            v1644:FireServer("equipPet", v1646(v1645, "Mighty Monster")[v1649])
+                            task.wait(v110)
+                        end
+                        task.wait(v110)
+                        v1647 = v1641
+                        v1648 = v1644
+                        v1647(v1648, v1643)
+                        task.wait(v110)
+                        v1647 = v1642
+                        v1653 = v1647(v1645, "Wild Wizard")
+                        v1648 = math.min(8, #v1653)
+                        for v1650 = 1, v1648 do
+                            if not v112 then
+                                return
+                            end
+                            v1644:FireServer("equipPet", v1647(v1645, "Wild Wizard")[v1650])
+                            task.wait(v110)
+                        end
+                        task.wait(v110)
+                        continue
+                    end
+                    task.wait(0.1)
+                    continue
+                end
+            end
+            return
+        end
+        v113 = task.spawn(v1638)
+    end
+    return
+end
+v9:AddSwitch("GOD MODE (PACK SPAM)", v117)
+v114 = v9:AddLabel("SINGLE PET SPAM (EQUIP/UNEQUIP)")
+v114.TextSize = 22
+v114 = false
+v115 = nil
+v119 = function(v1693)
+    local v1695
+    v114 = v1693
+    if v115 then
+        task.cancel(v115)
+        v115 = nil
+    end
+    if v1693 then
+        v1695 = function()
+            local v1697, v1698, v1699, v1700, v1701, v1702, v1703, v1704, v1705, v1706, v1709
+            v1697 = function()
+                local v1713
+                v1713 = v11:FindFirstChild("rEvents")
+                if v1713 then
+                    return v1713:FindFirstChild("equipPetEvent")
+                end
+                return nil
+            end
+            v1698 = function(v1717, v1718)
+                local v1719, v1720, v1721, v1722, v1723, v1724, v1727, v1728, v1729, v1730, v1731, v1735
+                v1719 = v1717
+                if not (not v1719) then
+                    v1719 = v1718
+                end
+                if not v1719 then
+                    return
+                end
+                for v1722, v1723 in pairs(v1718:GetChildren()) do
+                    v1724 = v1723:IsA("Folder")
+                    if v1724 then
+                        for v1730, v1731 in pairs(v1723:GetChildren()) do
+                            v1735 = v1731
+                            v1717:FireServer("unequipPet", v1735)
+                        end
+                    end
+                end
+                return
+            end
+            v1699 = function(v1737, v1738)
+                local v1739, v1740, v1741, v1742, v1743, v1744
+                v1739 = {}
+                v1740 = v1737
+                if not (v1740) then
+                    v1740 = v1739
+                    return v1740
+                end
+                for v1743, v1744 in pairs(v1737:GetChildren()) do
+                    if v1744.Name == v1738 then
+                        table.insert(v1739, v1744)
+                    end
+                end
+                v1740 = v1739
+                return v1740
+            end
+            while true do
+                if v114 then
+                    v1701 = v13:FindFirstChild("petsFolder")
+                    v1700 = v1701
+                    v1701 = v1697
+                    v1701 = v1701()
+                    if v1700 then
+                        v1702 = v1701
+                    end
+                    if v1702 then
+                        v1703 = v1700:FindFirstChild("Unique")
+                        v1702 = v1703
+                        v1703 = v1698
+                        v1703(v1701, v1700)
+                        task.wait(v110)
+                        v1703 = v1699
+                        v1709 = v1703(v1702, "Mighty Monster")
+                        v1704 = math.min(8, #v1709)
+                        for v1706 = 1, v1704 do
+                            if not v114 then
+                                return
+                            end
+                            v1701:FireServer("equipPet", v1703(v1702, "Mighty Monster")[v1706])
+                            task.wait(v110)
+                        end
+                        task.wait(v110)
+                        v1704 = v1698
+                        v1705 = v1701
+                        v1704(v1705, v1700)
+                        task.wait(v110)
+                        continue
+                    end
+                    task.wait(0.1)
+                    continue
+                end
+            end
+            return
+        end
+        v115 = task.spawn(v1695)
+    end
+    return
+end
+v9:AddSwitch("1. PET SPAM (Mighty Monster)", v119)
+v116 = false
+v117 = nil
+v121 = function(v1749)
+    local v1751
+    v116 = v1749
+    if v117 then
+        task.cancel(v117)
+        v117 = nil
+    end
+    if v1749 then
+        v1751 = function()
+            local v1753, v1754, v1755, v1756, v1757, v1758, v1759, v1760, v1761, v1762, v1765
+            v1753 = function()
+                local v1769
+                v1769 = v11:FindFirstChild("rEvents")
+                if v1769 then
+                    return v1769:FindFirstChild("equipPetEvent")
+                end
+                return nil
+            end
+            v1754 = function(v1773, v1774)
+                local v1775, v1776, v1777, v1778, v1779, v1780, v1783, v1784, v1785, v1786, v1787, v1791
+                v1775 = v1773
+                if not (not v1775) then
+                    v1775 = v1774
+                end
+                if not v1775 then
+                    return
+                end
+                for v1778, v1779 in pairs(v1774:GetChildren()) do
+                    v1780 = v1779:IsA("Folder")
+                    if v1780 then
+                        for v1786, v1787 in pairs(v1779:GetChildren()) do
+                            v1791 = v1787
+                            v1773:FireServer("unequipPet", v1791)
+                        end
+                    end
+                end
+                return
+            end
+            v1755 = function(v1793, v1794)
+                local v1795, v1796, v1797, v1798, v1799, v1800
+                v1795 = {}
+                v1796 = v1793
+                if not (v1796) then
+                    v1796 = v1795
+                    return v1796
+                end
+                for v1799, v1800 in pairs(v1793:GetChildren()) do
+                    if v1800.Name == v1794 then
+                        table.insert(v1795, v1800)
+                    end
+                end
+                v1796 = v1795
+                return v1796
+            end
+            while true do
+                if v116 then
+                    v1757 = v13:FindFirstChild("petsFolder")
+                    v1756 = v1757
+                    v1757 = v1753
+                    v1757 = v1757()
+                    if v1756 then
+                        v1758 = v1757
+                    end
+                    if v1758 then
+                        v1759 = v1756:FindFirstChild("Unique")
+                        v1758 = v1759
+                        v1759 = v1754
+                        v1759(v1757, v1756)
+                        task.wait(v110)
+                        v1759 = v1755
+                        v1765 = v1759(v1758, "Wild Wizard")
+                        v1760 = math.min(8, #v1765)
+                        for v1762 = 1, v1760 do
+                            if not v116 then
+                                return
+                            end
+                            v1757:FireServer("equipPet", v1759(v1758, "Wild Wizard")[v1762])
+                            task.wait(v110)
+                        end
+                        task.wait(v110)
+                        v1760 = v1754
+                        v1761 = v1757
+                        v1760(v1761, v1756)
+                        task.wait(v110)
+                        continue
+                    end
+                    task.wait(0.1)
+                    continue
+                end
+            end
+            return
+        end
+        v117 = task.spawn(v1751)
+    end
+    return
+end
+v9:AddSwitch("2. PET SPAM (Wild Wizard)", v121)
+v118 = v9:AddLabel("EXTRAS")
+v118.TextSize = 26
+v118 = nil
+v123 = function(v1805)
+    local v1806, v1807, v1808, v1809, v1810, v1813
+    v1806 = v1805
+    if not (not v1806) then
+        v1813 = not v1806
+        if v1805 == "" then
+            v1813 = true
+        end
+    end
+    if v1813 then
+        v118 = nil
+        return
+    end
+    for v1809, v1810 in pairs(v15:GetPlayers()) do
+        if v1810.DisplayName == v1805 then
+            v118 = v1810
+            break
+        end
+    end
+    return
+end
+v120 = v9:AddDropdown("Select Player", v123)
+v119 = v120
+for v123, v124 in pairs(v15:GetPlayers()) do
+    if v124 ~= v13 then
+        v126 = v119
+        v126:Add(v124.DisplayName)
+    end
+end
+v122 = function(v1814)
+    if v1814 ~= v13 then
+        v119:Add(v1814.DisplayName)
+    end
+    return
+end
+v15.PlayerAdded:Connect(v122)
+v122 = function(v1819)
+    local v1820, v1821, v1822, v1823
+    if v118 == v1819 then
+        v118 = nil
+    end
+    v119:Clear()
+    for v1822, v1823 in pairs(v15:GetPlayers()) do
+        if v1823 ~= v13 then
+            v119:Add(v1823.DisplayName)
+        end
+    end
+    return
+end
+v15.PlayerRemoving:Connect(v122)
+v120 = false
+v121 = nil
+v122 = false
+v126 = function(v1828)
+    local v1830
+    v120 = v1828
+    if v121 then
+        task.cancel(v121)
+        v121 = nil
+    end
+    if v1828 then
+        v122 = false
+        v1830 = function()
+            local v1832, v1833, v1834, v1835, v1836, v1837, v1838, v1839
+            v1832 = function()
+                local v1846, v1847, v1848, v1849
+                if v122 then
+                    return true
+                end
+                if v13.Character then
+                    v1846 = v13.Character:FindFirstChild("Ground Slam")
+                    if not (v1846) then
+                        v1846 = v13.Character:FindFirstChild("GroundSlam")
+                    end
+                end
+                v1847 = v1846
+                if not v1847 then
+                    v1847 = v13.Backpack
+                end
+                if v1847 then
+                    v1846 = v13.Backpack:FindFirstChild("Ground Slam")
+                    if not (v1846) then
+                        v1846 = v13.Backpack:FindFirstChild("GroundSlam")
+                    end
+                end
+                if v1846 then
+                    if v1846.Parent == v13.Backpack then
+                        v1846.Parent = v13.Character
+                    end
+                    v122 = true
+                    return true
+                end
+                v1848 = v11:FindFirstChild("rEvents")
+                if v1848 then
+                    v1848 = v1848:FindFirstChild("equipAbilityEvent")
+                    if not (v1848) then
+                        v1848 = v1848:FindFirstChild("equipAbility")
+                    end
+                    if v1848 then
+                        v1848:FireServer("Ground Slam")
+                        task.wait(0.1)
+                        if v13.Character then
+                            v1849 = v13.Character:FindFirstChild("Ground Slam")
+                            if not (v1849) then
+                                v1849 = v13.Character:FindFirstChild("GroundSlam")
+                            end
+                            if v1849 then
+                                v122 = true
+                                return true
+                            end
+                        end
+                    end
+                end
+                return false
+            end
+            while true do
+                if v120 then
+                    if not (v118) then
+                        task.wait(0.5)
+                        continue
+                    end
+                    if v13.Character then
+                        v1834 = v13.Character:FindFirstChild("Ground Slam")
+                        if not (v1834) then
+                            v1834 = v13.Character:FindFirstChild("GroundSlam")
+                        end
+                        v1835 = v1834
+                        if not (v1835) then
+                            v122 = false
+                        end
+                    else
+                        v122 = false
+                    end
+                    if not (v122) then
+                        v1834 = v1832
+                        v1834()
+                    end
+                    if v118.Character then
+                        v1835 = v13.Character
+                    end
+                    if v1835 then
+                        v1836 = v118.Character:FindFirstChild("HumanoidRootPart")
+                        v1835 = v1836
+                        v1837 = v13.Character:FindFirstChild("HumanoidRootPart")
+                        v1836 = v1837
+                        v1837 = v1835
+                        if v1837 then
+                            v1837 = v1836
+                        end
+                        if v1837 then
+                            v1839 = CFrame.new(0, 0, 3)
+                            v1836.CFrame = (v1835.CFrame * v1839)
+                            v1833 = v13.Character
+                            v1838 = function()
+                                local v1853, v1854, v1855
+                                v1853 = v1833:FindFirstChild("Ground Slam")
+                                if not (v1853) then
+                                    v1853 = v1833:FindFirstChild("GroundSlam")
+                                end
+                                if v1853 then
+                                    v1854 = v1853:IsA("Tool")
+                                end
+                                if v1854 then
+                                    v1853:Activate()
+                                end
+                                v1854 = v13:FindFirstChild("muscleEvent")
+                                if v1854 then
+                                    v13.muscleEvent:FireServer("groundSlam")
+                                end
+                                v1855 = v11:FindFirstChild("rEvents")
+                                if v1855 then
+                                    v1855 = v1855:FindFirstChild("groundSlam")
+                                    if not (v1855) then
+                                        v1855 = v1855:FindFirstChild("groundSlamEvent")
+                                    end
+                                    if v1855 then
+                                        v1855:FireServer()
+                                    end
+                                end
+                                return
+                            end
+                            pcall(v1838)
+                        end
+                    end
+                    task.wait(0.05)
+                end
+            end
+            return
+        end
+        v121 = task.spawn(v1830)
+    end
+    return
+end
+v9:AddSwitch("Anti NaN (Ground Slam)", v126)
+v123 = v7:AddTab("Spy Stats")
+v9 = v123
+v123 = v9:AddLabel("Player Stats:")
+v123.TextSize = 24
+v124 = {}
+v124["Time"] = utf8.char(128347)
+v124["Stats"] = utf8.char(128202)
+v124["Strength"] = utf8.char(128170)
+v124["Rebirths"] = utf8.char(128260)
+v124["Durability"] = utf8.char(128737)
+v124["Kills"] = utf8.char(128128)
+v124["Agility"] = utf8.char(127939)
+v124["Evil Karma"] = utf8.char(128520)
+v124["Good Karma"] = utf8.char(128519)
+v124["Brawls"] = utf8.char(129354)
+v125 = {}
+v127 = {}
+v127.name = "Strength"
+v127.statName = "Strength"
+v125[1] = v127
+v127 = {}
+v127.name = "Rebirths"
+v127.statName = "Rebirths"
+v125[2] = v127
+v127 = {}
+v127.name = "Durability"
+v127.statName = "Durability"
+v125[3] = v127
+v127 = {}
+v127.name = "Agility"
+v127.statName = "Agility"
+v125[4] = v127
+v127 = {}
+v127.name = "Kills"
+v127.statName = "Kills"
+v125[5] = v127
+v127 = {}
+v127.name = "Evil Karma"
+v127.statName = "evilKarma"
+v125[6] = v127
+v127 = {}
+v127.name = "Good Karma"
+v127.statName = "goodKarma"
+v125[7] = v127
+v127 = {}
+v127.name = "Brawls"
+v127.statName = "Brawls"
+v125[8] = v127
+v126 = function()
+    local v1861, v1862, v1863, v1864, v1865, v1866
+    v1861 = {}
+    for v1865, v1866 in ipairs(v15:GetPlayers()) do
+        table.insert(v1861, v1866)
+    end
+    v1862 = v1861
+    return v1862
+end
+v128 = v9:AddLabel("Name: N/A")
+v127 = v128
+v127.TextSize = 20
+v129 = v9:AddLabel("Username: N/A")
+v128 = v129
+v128.TextSize = 20
+v129 = {}
+for v133, v134 in ipairs(v125) do
+    v137 = v9
+    v136 = v137:AddLabel((((v124[v134.name] .. " ") .. v134.name) .. ": 0 (0)"))
+    v129[v134.name] = v136
+    v129[v134.name].TextSize = 20
+end
+v130 = function(v1871)
+    local v1876, v1877, v1878, v1879, v1880, v1881, v1882, v1883, v1884, v1885, v1886, v1887, v1888, v1889, v1890
+    v1876 = 1000000000000000
+    v1877 = nil
+    v1878 = nil
+    if 1000000000000000 <= v1871 then
+        v1876 = string.format("%.1fqa", (v1871 / 1000000000000000))
+        v1877 = "%.1fqa"
+        v1878 = (v1871 / 1000000000000000)
+    end
+    v1879 = 1000000000000
+    v1880 = v1877
+    v1881 = v1878
+    if 1000000000000 <= v1871 then
+        v1879 = string.format("%.1ft", (v1871 / 1000000000000))
+        v1880 = "%.1ft"
+        v1881 = (v1871 / 1000000000000)
+    end
+    v1882 = 1000000000
+    v1883 = v1880
+    v1884 = v1881
+    if 1000000000 <= v1871 then
+        v1882 = string.format("%.1fb", (v1871 / 1000000000))
+        v1883 = "%.1fb"
+        v1884 = (v1871 / 1000000000)
+    end
+    v1885 = 1000000
+    v1886 = v1883
+    v1887 = v1884
+    if 1000000 <= v1871 then
+        v1885 = string.format("%.1fm", (v1871 / 1000000))
+        v1886 = "%.1fm"
+        v1887 = (v1871 / 1000000)
+    end
+    v1888 = 1000
+    v1889 = v1886
+    v1890 = v1887
+    if 1000 <= v1871 then
+        v1888 = string.format("%.1fk", (v1871 / 1000))
+        v1889 = "%.1fk"
+        v1890 = (v1871 / 1000)
+    end
+    return tostring(v1871)
+end
+v131 = function(v1891)
+    local v1892, v1893, v1894
+    v1894 = v1891
+    while true do
+        v1893, v1894 = tostring:gsub("^(-?%d+)(%d%d%d)", "%1,%2")
+        v1892 = v1893
+        k = v1894
+        if k == 0 then
+            break
+        end
+        continue
+    end
+    v1893 = v1892
+    return v1893
+end
+v132 = function(v1898)
+    local v1899, v1900, v1901, v1902, v1903, v1904, v1905, v1906, v1907, v1909, v1910, v1911, v1913, v1915, v1919
+    v1899 = v1898
+    if not (v1899) then
+        return
+    end
+    v127.Text = ("Name: " .. v1898.DisplayName)
+    v1900 = ("Username: " .. v1898.Name)
+    v128.Text = v1900
+    v1900 = v1898:FindFirstChild("leaderstats")
+    v1899 = v1900
+    v1900 = v1899
+    if not (v1900) then
+        return
+    end
+    for v1903, v1904 in ipairs(v125) do
+        v1907 = v1899
+        v1906 = v1907:FindFirstChild(v1904.statName)
+        if v1906 then
+            v1906 = v1899
+            v1905 = v1906:FindFirstChild(v1904.statName)
+        else
+            v1910 = v1898
+            v1909 = v1910:FindFirstChild(v1904.statName)
+            if v1909 then
+                v1906 = v1898
+                v1905 = v1906:FindFirstChild(v1904.statName)
+            end
+        end
+        if v1905 then
+            v1919 = v124[v1904.name]
+            if not (v124[v1904.name]) then
+                v1919 = ""
+            end
+            v1913 = v1919
+            v1915 = v130(v1905.Value)
+            v1911 = string.format("%s %s: %s (%s)", v1913, v1904.name, v1915, v131(v1905.Value))
+            v129[v1904.name].Text = v1911
+        else
+            v1909 = (((v124[v1904.name] .. " ") .. v1904.name) .. ": 0 (0)")
+            v129[v1904.name].Text = v1909
+        end
+    end
+    return
+end
+v123 = nil
+v137 = function(v1920)
+    local v1924, v1925, v1926
+    for v1924, v1925 in ipairs(v126()) do
+        v1926 = ((v1925.DisplayName .. " | ") .. v1925.Name)
+        if v1920 == v1926 then
+            v123 = v1925
+            v132(v123)
+            break
+        end
+    end
+    return
+end
+v134 = v9:AddDropdown("Choose Player", v137)
+v133 = v134
+v135 = v126
+for v137, v138 in ipairs(v135()) do
+    v140 = v133
+    v141 = ((v138.DisplayName .. " | ") .. v138.Name)
+    v140:Add(v141)
+end
+v136 = function(v1930)
+    v133:Add(((v1930.DisplayName .. " | ") .. v1930.Name))
+    return
+end
+v15.PlayerAdded:Connect(v136)
+v136 = function(v1937)
+    local v1941, v1942
+    v133:Clear()
+    for v1941, v1942 in ipairs(v126()) do
+        v133:Add(((v1942.DisplayName .. " | ") .. v1942.Name))
+    end
+    return
+end
+v15.PlayerRemoving:Connect(v136)
+v135 = function()
+    while true do
+        if v123 then
+            v132(v123)
+        end
+        task.wait(0.2)
+    end
+    return
+end
+task.spawn(v135)
+v9:AddLabel("————————————————————————————")
+v134 = v9:AddLabel("Advanced Stats:")
+v134.TextSize = 24
+v135 = v9:AddLabel("Enemy Health: N/A")
+v134 = v135
+v134.TextSize = 20
+v135 = Color3.fromRGB(0, 140, 255)
+v134.TextColor3 = v135
+v136 = v9:AddLabel("Your Damage: N/A")
+v135 = v136
+v135.TextSize = 20
+v136 = Color3.fromRGB(255, 0, 0)
+v135.TextColor3 = v136
+v137 = v9:AddLabel("Hits to Kill: N/A")
+v136 = v137
+v136.TextSize = 20
+v137 = Color3.fromRGB(255, 0, 0)
+v136.TextColor3 = v137
+v137 = function(v1952)
+    local v1953, v1954, v1957, v1958, v1959, v1960, v1961, v1962, v1963, v1964, v1967, v1971, v1972, v1973
+    v1953 = v1952
+    if not (v1953) then
+        return 0
+    end
+    v1954 = v1952:FindFirstChild("Durability")
+    if not (v1954) then
+        v1954 = v1952:FindFirstChild("leaderstats")
+        if v1954 then
+            v1954 = v1952.leaderstats:FindFirstChild("Durability")
+        end
+    end
+    v1971 = 0
+    if v1954 then
+        v1971 = v1954.Value
+    end
+    v1957 = v1952:FindFirstChild("ultimatesFolder")
+    if v1957 then
+        v1958 = v1957:FindFirstChild("Infernal Health")
+        if v1958 then
+            v1972 = v1958.Value
+            if not (v1958.Value) then
+                v1972 = 0
+            end
+        end
+    end
+    v1958 = v1952:FindFirstChild("equippedPets")
+    if v1958 then
+        for v1962, v1963 in ipairs(v1958:GetChildren()) do
+            v1964 = v1963:IsA("ObjectValue")
+            v1973 = v1964
+            if v1964 then
+                v1973 = v1963.Value
+            end
+            if v1973 then
+                v1967 = (string.lower(v1963.Value.Name)).match(string.lower(v1963.Value.Name), "mighty")
+                if v1967 then
+                    v1967 = (string.lower(v1963.Value.Name)).match(string.lower(v1963.Value.Name), "monster")
+                end
+                if v1967 then
+                end
+            end
+        end
+    end
+    v1959 = (v1971 * (1 + 0))
+    return v1959
+end
+v138 = function()
+    local v1975, v1977, v1979, v1980, v1981, v1982, v1983, v1984, v1985, v1986, v1989, v1993, v1994
+    v1975 = v15.LocalPlayer
+    if not (v1975) then
+        return 0
+    end
+    v1977 = v15.LocalPlayer:FindFirstChild("leaderstats")
+    if v1977 then
+        v1977 = v1977:FindFirstChild("Strength")
+        v1975 = v1977
+    end
+    v1977 = v1975
+    if not (v1977) then
+        return 0
+    end
+    v1979 = v15.LocalPlayer:FindFirstChild("ultimatesFolder")
+    if v1979 then
+        v1980 = v1979:FindFirstChild("Demon Damage")
+        if v1980 then
+            v1993 = v1980.Value
+            if not (v1980.Value) then
+                v1993 = 0
+            end
+        end
+    end
+    v1980 = v15.LocalPlayer:FindFirstChild("equippedPets")
+    if v1980 then
+        for v1984, v1985 in ipairs(v1980:GetChildren()) do
+            v1986 = v1985:IsA("ObjectValue")
+            v1994 = v1986
+            if v1986 then
+                v1994 = v1985.Value
+            end
+            if v1994 then
+                v1989 = (string.lower(v1985.Value.Name)).match(string.lower(v1985.Value.Name), "wild")
+                if v1989 then
+                    v1989 = (string.lower(v1985.Value.Name)).match(string.lower(v1985.Value.Name), "wizard")
+                end
+                if v1989 then
+                end
+            end
+        end
+    end
+    v1980 = ((v1975.Value * 0.0667) * (1 + 0))
+    return v1980
+end
+v139 = function(v1995, v1996)
+    local v1998
+    if v1996 <= 0 then
+        return "∞"
+    end
+    if 100 < math.ceil((v1995 / v1996)) then
+        return "∞"
+    end
+    if math.ceil((v1995 / v1996)) < 1 then
+        return 1
+    end
+    v1998 = math.ceil((v1995 / v1996))
+    return v1998
+end
+v140 = function(v2000)
+    local v2001, v2002, v2004, v2006
+    v2001 = v2000
+    if not (v2001) then
+        v134.Text = "Enemy Health: N/A"
+        v135.Text = "Your Damage: N/A"
+        v136.Text = "Hits to Kill: N/A"
+        return
+    end
+    v2001 = v137(v2000)
+    v2000 = v138()
+    v2002 = v139(v2001, v2000)
+    v2006 = v130(v2001)
+    v2004 = string.format("Enemy Health: %s (%s)", v2006, v131(v2001))
+    v134.Text = v2004
+    v2006 = v130(v2000)
+    v2004 = string.format("Your Damage: %s (%s)", v2006, v131(v2000))
+    v135.Text = v2004
+    v2004 = string.format("Hits to Kill: %s", tostring(v2002))
+    v136.Text = v2004
+    return
+end
+v142 = function()
+    while true do
+        if v123 then
+            v140(v123)
+        else
+            v140(nil)
+        end
+        task.wait(0.1)
+    end
+    return
+end
+task.spawn(v142)
+v141 = v7:AddTab("Teleport")
+v9 = v141
+v141 = function(v2014, v2015)
+    local v2016, v2017, v2022
+    if not (v13.Character) then
+        v2016 = v13.CharacterAdded:Wait()
+    end
+    v2017 = v2016:WaitForChild("HumanoidRootPart")
+    v2017.CFrame = v2014
+    v2017 = game:GetService("StarterGui")
+    v2022 = v2015
+    v13.Text = ("Teleported to " .. v2022)
+    v13.Duration = 3
+    v2017:SetCore("SendNotification", v13)
+    return
+end
+v145 = function()
+    local v2025
+    v2025 = CFrame.new(2, 8, 115)
+    v141(v2025, "Spawn")
+    return
+end
+v9:AddButton("Spawn", v145)
+v145 = function()
+    local v2031
+    v2031 = CFrame.new(1947, 2, 6191)
+    v141(v2031, "Secret Area")
+    return
+end
+v9:AddButton("Secret Area", v145)
+v145 = function()
+    local v2037
+    v2037 = CFrame.new(-34, 7, 1903)
+    v141(v2037, "Tiny Island")
+    return
+end
+v9:AddButton("Tiny Island", v145)
+v145 = function()
+    local v2043
+    v2043 = CFrame.new(-2600.00244, 3.67686558, -403.884369, 0.0873617008, 1.0482899e-09, 0.99617666, 3.07204253e-08, 1, -3.7464023e-09, -0.99617666, 3.09302628e-08, 0.0873617008)
+    v141(v2043, -2600.00244)
+    return
+end
+v9:AddButton("Frozen Island", v145)
+v145 = function()
+    local v2058
+    v2058 = CFrame.new(2255, 7, 1071)
+    v141(v2058, "Mythical Island")
+    return
+end
+v9:AddButton("Mythical Island", v145)
+v145 = function()
+    local v2064
+    v2064 = CFrame.new(-6768, 7, -1287)
+    v141(v2064, -6768)
+    return
+end
+v9:AddButton("Hell Island", v145)
+v145 = function()
+    local v2070
+    v2070 = CFrame.new(4604, 991, -3887)
+    v141(v2070, 4604)
+    return
+end
+v9:AddButton("Legend Island", v145)
+v145 = function()
+    local v2076
+    v2076 = CFrame.new(-8646, 17, -5738)
+    v141(v2076, -8646)
+    return
+end
+v9:AddButton("Muscle King Island", v145)
+v145 = function()
+    local v2082
+    v2082 = CFrame.new(-8659, 6, 2384)
+    v141(v2082, "Jungle Island")
+    return
+end
+v9:AddButton("Jungle Island", v145)
+v145 = function()
+    local v2088
+    v2088 = CFrame.new(4471, 119, -8836)
+    v141(v2088, 4471)
+    return
+end
+v9:AddButton("Brawl Lava", v145)
+v145 = function()
+    local v2094
+    v2094 = CFrame.new(960, 17, -7398)
+    v141(v2094, 960)
+    return
+end
+v9:AddButton("Brawl Desert", v145)
+v145 = function()
+    local v2100
+    v2100 = CFrame.new(-1849, 20, -6335)
+    v141(v2100, -1849)
+    return
+end
+v9:AddButton("Brawl Regular", v145)
+v142 = v7:AddTab("Info")
+
+v142 = v9:AddLabel("")
+v7 = v142
+v142 = v9:AddLabel("HALIS HAS A TINY PENIS!")
+v7 = v142
+v7.TextSize = 36
+return
