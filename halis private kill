@@ -4732,11 +4732,7 @@ v145 = function()
     return
 end
 v9:AddButton("Brawl Regular", v145)
-v142 = v7:AddTab("Info")
-
-v142 = v9:AddLabel("")
-v7 = v142
-v142 = v9:AddLabel("HALIS HAS A TINY PENIS!")
-v7 = v142
-v7.TextSize = 36
-return
+local tab = v7:AddTab("Info")
+local label = tab:AddLabel("")
+local label = tab:AddLabel("HALIS HAS A TINY PENIS!")
+label.TextSize = 36
