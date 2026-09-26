@@ -1,0 +1,297 @@
+-- Services
+local Players = game:GetService("Players")
+local HttpService = game:GetService("HttpService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local VirtualUser = game:GetService("VirtualUser")
+local Lighting = game:GetService("Lighting")
+local Stats = game:GetService("Stats")
+
+-- Local Player & Stats
+local player = Players.LocalPlayer
+local username = player.Name
+local userId = player.UserId
+local display = player.DisplayName
+
+local leaderstats = player:WaitForChild("leaderstats")
+local rebirthsStat = leaderstats:WaitForChild("Rebirths")
+local strengthStat = leaderstats:WaitForChild("Strength")
+local durabilityStat = player:WaitForChild("Durability")
+local muscleEvent = player:WaitForChild("muscleEvent")
+
+-- Load UI Library
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/0o0o0o0o0o0o0o0o0o0o0o0o/0o/refs/heads/main/RuRuPriv", true))()
+
+local window = library:AddWindow("KTA ULTRA FAST REBIRTH | Made by Billy | Cracked By Invincible", {
+    title_bar = {Color3.fromRGB(0, 0, 0), Color3.fromRGB(0, 0, 0), Color3.fromRGB(255, 255, 255)},
+    title_bar_transparency = 1,
+    background = {Color3.fromRGB(0, 0, 0), Color3.fromRGB(0, 0, 0), Color3.fromRGB(255, 255, 255)},
+    background_transparency = 0.1,
+    main_color = Color3.fromRGB(255, 255, 255),
+    min_size = Vector2.new(450, 450),
+    can_resize = true
+})
+
+-- Format Numbers (Helper)
+local function formatNumber(num)
+    local isNegative = num < 0
+    num = math.abs(num)
+    if num >= 1e15 then return (isNegative and "-" or "") .. string.format("%.2fQ", num / 1e15) end
+    if num >= 1e12 then return (isNegative and "-" or "") .. string.format("%.2fT", num / 1e12) end
+    if num >= 1e9  then return (isNegative and "-" or "") .. string.format("%.2fB", num / 1e9) end
+    if num >= 1e6  then return (isNegative and "-" or "") .. string.format("%.2fM", num / 1e6) end
+    if num >= 1e3  then return (isNegative and "-" or "") .. string.format("%.2fK", num / 1e3) end
+    return (isNegative and "-" or "") .. string.format("%.0f", num)
+end
+
+-- Anti-AFK Setup
+local antiAFKConnection
+local function setupAntiAFK()
+    if antiAFKConnection then antiAFKConnection:Disconnect() end
+    antiAFKConnection = player.Idled:Connect(function()
+        VirtualUser:CaptureController()
+        VirtualUser:ClickButton2(Vector2.new())
+    end)
+end
+setupAntiAFK()
+
+-- Fast Pet Swapper
+local function managePets(petName)
+    local petsFolder = player:FindFirstChild("petsFolder")
+    if not petsFolder then return end
+
+    for _, folder in ipairs(petsFolder:GetChildren()) do
+        if folder:IsA("Folder") then
+            for _, pet in ipairs(folder:GetChildren()) do
+                ReplicatedStorage.rEvents.equipPetEvent:FireServer("unequipPet", pet)
+            end
+        end
+    end
+    
+    local uniqueFolder = petsFolder:FindFirstChild("Unique")
+    if uniqueFolder then
+        for _, pet in ipairs(uniqueFolder:GetChildren()) do
+            if pet.Name == petName then
+                ReplicatedStorage.rEvents.equipPetEvent:FireServer("equipPet", pet)
+            end
+        end
+    end
+end
+
+--------------------------------------------------------------------------------
+-- TAB 1: FAST REBIRTH
+--------------------------------------------------------------------------------
+local FastRebTab = window:AddTab("Fast Rebirth")
+FastRebTab:Show()
+
+local isRunning = false
+local startTime = 0
+local totalElapsed = 0
+local initialRebirths = rebirthsStat.Value
+
+local serverLabel = FastRebTab:AddLabel("Time:")
+serverLabel.TextSize = 20
+
+local timeLabel = FastRebTab:AddLabel("0d 0h 0m 0s - Inactive")
+timeLabel.TextSize = 17
+timeLabel.TextColor3 = Color3.fromRGB(255, 50, 50)
+
+local paceLabel = FastRebTab:AddLabel("Pace: 0 / Hour | 0 / Day | 0 / Week")
+paceLabel.TextSize = 17
+
+local averagePaceLabel = FastRebTab:AddLabel("Average Pace: 0 / Hour | 0 / Day | 0 / Week")
+averagePaceLabel.TextSize = 17
+
+local rebirthsStatsLabel = FastRebTab:AddLabel("Rebirths: " .. formatNumber(rebirthsStat.Value) .. " | Gained: 0")
+rebirthsStatsLabel.TextSize = 17
+
+local lastRebirthTime = tick()
+local lastRebirthValue = rebirthsStat.Value
+local paceHistoryHour, paceHistoryDay, paceHistoryWeek = {}, {}, {}
+local maxHistoryLength = 20
+local rebirthCount = 0
+
+local function updateRebirthsLabel()
+    local gained = rebirthsStat.Value - initialRebirths
+    rebirthsStatsLabel.Text = string.format("Rebirths: %s | Gained: %s", formatNumber(rebirthsStat.Value), formatNumber(gained))
+end
+
+local function calculatePaceOnRebirth()
+    rebirthCount = rebirthCount + 1
+    if rebirthCount < 2 then
+        lastRebirthTime = tick()
+        lastRebirthValue = rebirthsStat.Value
+        return
+    end
+
+    local now = tick()
+    local gained = rebirthsStat.Value - lastRebirthValue
+
+    if gained > 0 then
+        local avgTimePerRebirth = (now - lastRebirthTime) / gained
+        local paceHour = 3600 / avgTimePerRebirth
+        local paceDay = 86400 / avgTimePerRebirth
+        local paceWeek = 604800 / avgTimePerRebirth
+
+        paceLabel.Text = string.format("Pace: %s / Hour | %s / Day | %s / Week",
+            formatNumber(paceHour), formatNumber(paceDay), formatNumber(paceWeek))
+
+        table.insert(paceHistoryHour, paceHour)
+        table.insert(paceHistoryDay, paceDay)
+        table.insert(paceHistoryWeek, paceWeek)
+
+        if #paceHistoryHour > maxHistoryLength then
+            table.remove(paceHistoryHour, 1)
+            table.remove(paceHistoryDay, 1)
+            table.remove(paceHistoryWeek, 1)
+        end
+
+        local function average(tbl)
+            local sum = 0
+            for _, v in ipairs(tbl) do sum = sum + v end
+            return #tbl > 0 and (sum / #tbl) or 0
+        end
+
+        averagePaceLabel.Text = string.format("Average Pace: %s / Hour | %s / Day | %s / Week",
+            formatNumber(average(paceHistoryHour)), formatNumber(average(paceHistoryDay)), formatNumber(average(paceHistoryWeek)))
+
+        lastRebirthTime = now
+        lastRebirthValue = rebirthsStat.Value
+    end
+end
+
+rebirthsStat:GetPropertyChangedSignal("Value"):Connect(function()
+    if isRunning then
+        calculatePaceOnRebirth()
+    end
+    updateRebirthsLabel()
+end)
+
+local function updateUI()
+    local currentTime = tick()
+    local elapsed = isRunning and (currentTime - startTime + totalElapsed) or totalElapsed
+    
+    local days = math.floor(elapsed / 86400)
+    local hours = math.floor((elapsed % 86400) / 3600)
+    local minutes = math.floor((elapsed % 3600) / 60)
+    local seconds = math.floor(elapsed % 60)
+    
+    timeLabel.Text = string.format("%dd %dh %dm %ds - %s", days, hours, minutes, seconds, isRunning and "Rebirthing Ultra Fast" or "Paused")
+    timeLabel.TextColor3 = isRunning and Color3.fromRGB(50, 255, 50) or Color3.fromRGB(255, 50, 50)
+end
+
+task.spawn(function()
+    while true do
+        updateUI()
+        task.wait(0.1)
+    end
+end)
+
+-- HIGH SPEED REBIRTH ENGINE
+local function ultraFastRebirthLoop()
+    managePets("Swift Samurai")
+    
+    while isRunning do
+        local currentRebirths = rebirthsStat.Value
+        local strengthTarget = 5000 + (currentRebirths * 2550)
+        
+        -- Multi-threaded Burst Reps
+        while isRunning and strengthStat.Value < strengthTarget do
+            for _ = 1, 30 do
+                muscleEvent:FireServer("rep")
+            end
+            task.wait()
+        end
+
+        -- Instant Rebirth Sequence
+        if isRunning and strengthStat.Value >= strengthTarget then
+            managePets("Tribal Overlord")
+            
+            local currentVal = rebirthsStat.Value
+            while isRunning and rebirthsStat.Value == currentVal do
+                ReplicatedStorage.rEvents.rebirthRemote:InvokeServer("rebirthRequest")
+                task.wait(0.01)
+            end
+            
+            -- Switch back to Swift Samurai immediately after rebirth completes
+            if isRunning then
+                managePets("Swift Samurai")
+            end
+        end
+    end
+end
+
+FastRebTab:AddLabel("")
+local RebirthLabel = FastRebTab:AddLabel("Rebirthing:")
+RebirthLabel.TextSize = 20
+
+FastRebTab:AddSwitch("Ultra Fast Rebirth", function(state)
+    isRunning = state
+    if state then
+        startTime = tick()
+        task.spawn(ultraFastRebirthLoop)
+    else
+        totalElapsed = totalElapsed + (tick() - startTime)
+        updateUI()
+    end
+end)
+
+--------------------------------------------------------------------------------
+-- TAB 2: FAST FARM
+--------------------------------------------------------------------------------
+local FarmingTab = window:AddTab("Fast Farm")
+
+FarmingTab:AddLabel("Time:").TextSize = 20
+local stopwatchLabel = FarmingTab:AddLabel("0d 0h 0m 0s - Fast Rep Inactive")
+stopwatchLabel.TextSize = 17
+stopwatchLabel.TextColor3 = Color3.fromRGB(255, 50, 50)
+
+local repsPerTick = 25
+local runFastRep = false
+
+FarmingTab:AddTextBox("Rep Speed", function(value)
+    local num = tonumber(value)
+    if num and num > 0 then
+        repsPerTick = math.floor(num)
+    end
+end, { placeholder = "25" })
+
+local function ultraFastFarmLoop()
+    while runFastRep do
+        for _ = 1, repsPerTick do
+            muscleEvent:FireServer("rep")
+        end
+        task.wait()
+    end
+end
+
+FarmingTab:AddSwitch("Fast Rep (Max Speed)", function(state)
+    runFastRep = state
+    if state then
+        task.spawn(ultraFastFarmLoop)
+    end
+end)
+
+--------------------------------------------------------------------------------
+-- TAB 3: CREDITS
+--------------------------------------------------------------------------------
+local infoTab = window:AddTab("Credit")
+infoTab:AddLabel("made by KONVENTIONZ").TextSize = 20
+infoTab:AddLabel("KTA ON TOP").TextSize = 17
+infoTab:AddLabel("CRACKED BY INV!").TextSize = 17
+
+infoTab:AddButton("Copy Discord", function()
+    local link = "https://discord.gg/5t2kxTHQ39"
+    if setclipboard then
+        setclipboard(link)
+        game.StarterGui:SetCore("SendNotification", {
+            Title = "Copied Invite!",
+            Text = "You can continue to Discord now.",
+            Duration = 3
+        })
+    end
+end)
+
+local wLabel = infoTab:AddLabel("KTA ULTRA [V2.0]")
+wLabel.TextSize = 30
+wLabel.Font = Enum.Font.Arcade
